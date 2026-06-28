@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjana AI Kajian Tindakan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="viewport">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy-primary: #0A192F;
+            --navy-light: #172A45;
+            --gold-primary: #D4AF37;
+            --gold-hover: #AA7C11;
+            --white: #FFFFFF;
+            --gray-bg: #F8F9FA;
+            --gray-text: #4A5568;
+            --border-color: #E2E8F0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gray-bg);
+            color: var(--navy-primary);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--gold-primary);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-title span {
+            color: var(--gold-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #E2E8F0;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: -3rem auto 4rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--gold-primary);
+            animation: fadeInUp 1s ease;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title { font-size: 2rem; }
+            .form-card { padding: 1.5rem; }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--navy-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-group label i {
+            color: var(--gold-primary);
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #FCFDFE;
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+            background-color: var(--white);
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit {
+            background-color: var(--navy-primary);
+            color: var(--white);
+            border: 2px solid var(--navy-primary);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--navy-light);
+            border-color: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 25, 47, 0.3);
+        }
+
+        .btn-reset {
+            background-color: transparent;
+            color: var(--gray-text);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-reset:hover {
+            background-color: #EDF2F7;
+            color: var(--navy-primary);
+            border-color: var(--navy-primary);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #E2E8F0;
+            border-top: 5px solid var(--gold-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem auto;
+        }
+
+        /* Output Section */
+        #output-section {
+            display: none;
+            margin-top: 4rem;
+        }
+
+        .output-heading {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .output-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-primary);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--navy-primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .tab-btn.active {
+            background: var(--navy-primary);
+            color: var(--white);
+            border-color: var(--navy-primary);
+        }
+
+        .tab-btn:hover:not(.active) {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .proposal-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--gold-primary);
+            padding: 3rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .proposal-card.active {
+            display: block;
+        }
+
+        .output-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .output-block {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .output-block:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .output-block h3 {
+            font-size: 1.1rem;
+            color: var(--navy-primary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .output-block h3 i {
+            color: var(--gold-primary);
+            width: 20px;
+        }
+
+        .output-block p, .output-block ul {
+            color: var(--gray-text);
+            font-size: 1rem;
+            padding-left: 2rem;
+        }
+
+        .output-block ul {
+            list-style-type: none;
+        }
+
+        .output-block ul li {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .output-block ul li::before {
+            content: "•";
+            color: var(--gold-primary);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy-primary);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+            border-top: 3px solid var(--gold-primary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="hero-title">PENJANA AI <span>KAJIAN TINDAKAN</span></h1>
+        <p class="hero-subtitle">Transformasikan amalan bilik darjah anda. Jana idea, intervensi, dan metodologi kajian tindakan akademik secara sistematik.</p>
+    </header>
+
+    <div class="container">
+        <section class="form-card">
+            <form id="action-research-form" onsubmit="generateResearch(event)">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="isu"><i class="fa-solid penalties fa-triangle-exclamation"></i> Isu / Masalah Murid</label>
+                        <input type="text" id="isu" placeholder="Contoh: Sukar mengingati sifir, Lemah membina ayat" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="subjek"><i class="fa-solid fa-book-bookmark"></i> Mata Pelajaran / Bidang</label>
+                        <input type="text" id="subjek" placeholder="Contoh: Matematik, Bahasa Melayu, Sains" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="tahap"><i class="fa-solid fa-gradient fa-graduation-cap"></i> Tahap Murid</label>
+                        <select id="tahap" required>
+                            <option value="" disabled selected>Pilih Tahap Murid</option>
+                            <option value="Prasekolah">Prasekolah</option>
+                            <option value="Rendah Rendah (Tahun 1-3)">Rendah Rendah (Tahun 1-3)</option>
+                            <option value="Rendah Atas (Tahun 4-6)">Rendah Atas (Tahun 4-6)</option>
+                            <option value="Menengah Rendah (Tingkatan 1-3)">Menengah Rendah (Tingkatan 1-3)</option>
+                            <option value="Menengah Atas (Tingkatan 4-5)">Menengah Atas (Tingkatan 4-5)</option>
+                            <option value="Pra-Universiti (Tingkatan 6/Matrikulasi)">Pra-Universiti (Tingkatan 6/Matrikulasi)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="kata-kunci"><i class="fa-solid fa-tags"></i> Kata Kunci Tambahan (Opsional)</label>
+                        <input type="text" id="kata-kunci" placeholder="Contoh: Digital, Gamifikasi, Kad Imbasan, Didik Hibur">
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-submit"><i class="fa-solid fa-wand-magic-sparkles"></i> Jana Idea Kajian</button>
+                    <button type="button" class="btn btn-reset" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                </div>
+            </form>
+        </section>
+
+        <div class="loading" id="loading-state">
+            <div class="spinner"></div>
+            <p>Memproses data dan menjana idea kajian tindakan berimpak tinggi...</p>
+        </div>
+
+        <section id="output-section">
+            <h2 class="output-heading">Cadangan Kajian Tindakan</h2>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(0)">Cadangan 1</button>
+                <button class="tab-btn" onclick="switchTab(1)">Cadangan 2</button>
+                <button class="tab-btn" onclick="switchTab(2)">Cadangan 3</button>
+            </div>
+
+            <div id="proposals-container">
+                </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Penjana AI Kajian Tindakan. Dibangunkan berasaskan Format Profesional Dewan Bahasa dan Pustaka.</p>
+    </footer>
+
+    <script>
+        function generateResearch(event) {
+            event.preventDefault();
+
+            // Show Loading
+            document.getElementById('loading-state').style.display = 'block';
+            document.getElementById('output-section').style.display = 'none';
+
+            // Get Input Values
+            const isu = document.getElementById('isu').value;
+            const subjek = document.getElementById('subjek').value;
+            const tahap = document.getElementById('tahap').value;
+            const kataKunci = document.getElementById('kata-kunci').value || "Pendekatan Kreatif";
+
+            setTimeout(() => {
+                // Generate Content
+                const container = document.getElementById('proposals-container');
+                container.innerHTML = ''; // Clear previous
+
+                const templates = [
+                    {
+                        type: "Pendekatan Gamifikasi Digital",
+                        inovasi: `Aplikasi Pintar ${subjek} (E-Kit)`,
+                        intervensi: `Pelaksanaan aktiviti intervensi berasaskan aplikasi atau platform permainan digital (seperti Quizizz/Wordwall khusus) yang diadaptasi mengikut sukatan kognitif murid.`
+                    },
+                    {
+                        type: "Pendekatan Bahan Maujud & Visual",
+                        inovasi: `Kotak Info-Grafik / Kad Imbasan Multi-Sensori`,
+                        intervensi: `Penggunaan kit fizikal berstruktur yang menggabungkan elemen visual dan taktil bagi mempermudah pemahaman konsep abstrak secara berperingkat.`
+                    },
+                    {
+                        type: "Pendekatan Didik Hibur & Mnemonik",
+                        inovasi: `Sistem Mnemonik Rima & Singkatan Berirama`,
+                        intervensi: `Pengenalan formula atau teknik penstrukturan maklumat menggunakan kaedah hafalan kreatif, penceritaan, ataupun nyanyian berstruktur.`
+                    }
+                ];
+
+                templates.forEach((template, index) => {
+                    const isActive = index === 0 ? 'active' : '';
+                    
+                    const tajuk = `Meningkatkan Penguasaan ${isu} dalam Mata Pelajaran ${subjek} bagi Murid ${tahap} Melalui ${template.type}`;
+                    const tajukInovasi = `Inovasi: ${template.inovasi}`;
+
+                    const cardHTML = `
+                        <div class="proposal-card ${isActive}" id="proposal-${index}">
+                            <div class="output-grid">
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-heading"></i> Tajuk Kajian Tindakan</h3>
+                                    <p><strong>${tajuk}</strong></p>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-lightbulb"></i> Cadangan Tajuk Inovasi</h3>
+                                    <p><strong>${tajukInovasi}</strong></p>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-circle-exclamation"></i> Masalah Kajian</h3>
+                                    <p>Murid tahap ${tahap} didapati menghadapi kesukaran yang signifikan untuk menguasai elemen berkaitan [${isu}] dalam mata pelajaran ${subjek}. Hal ini menjejaskan motivasi serta prestasi akademik mereka dalam ujian formatif dan sumatif.</p>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-bolt"></i> Pencetus Idea</h3>
+                                    <p>Hasil analisis refleksi pengajaran dan pembelajaran lalu mendapati kaedah konvensional kurang berkesan untuk menarik minat murid. Oleh itu, pencetusan idea berfokuskan <em>${kataKunci}</em> melalui <em>${template.type}</em> dilihat mampu merapatkan jurang pemahaman tersebut.</p>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-bullseye"></i> Objektif Kajian</h3>
+                                    <ul>
+                                        <li>Meningkatkan tahap penguasaan murid dalam aspek [${isu}] menerusi aplikasi ${template.inovasi}.</li>
+                                        <li>Mengubah amalan pedagogi guru agar menjadi lebih interaktif, menyeronokkan, dan berpusatkan murid.</li>
+                                    </ul>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-question"></i> Persoalan Kajian</h3>
+                                    <ul>
+                                        <li>Sejauh manakah penggunaan ${template.inovasi} dapat membantu murid meningkatkan pemahaman terhadap [${isu}]?</li>
+                                        <li>Bagaimanakah tindak balas atau persepsi murid terhadap pelaksanaan intervensi ini dalam bilik darjah?</li>
+                                    </ul>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-puzzle-piece"></i> Cadangan Intervensi / Inovasi</h3>
+                                    <p>${template.intervensi}</p>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-gears"></i> Metodologi Ringkas</h3>
+                                    <p>Kajian ini menggunakan Model Kajian Tindakan Kemmis & McTaggart yang melibatkan empat fasa utama secara berpusingan (Gelung): Merefleks, Merancang, Bertindak, dan Memerhati.</p>
+                                </div>
+                                <div class="output-block">
+                                    <h3><i class="fa-solid fa-clipboard-check"></i> Instrumen Cadangan</h3>
+                                    <ul>
+                                        <li>Ujian Pra dan Ujian Pos (Mengukur pencapaian akademik).</li>
+                                        <li>Borang Pemerhatian Berstruktur (Menilai tahap pelibatan murid semasa intervensi).</li>
+                                        <li>Soal Selidik Ringkas atau Temu Bual (Menganalisis persepsi dan emosi murid).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHTML;
+                });
+
+                // Hide Loading & Show Output
+                document.getElementById('loading-state').style.display = 'none';
+                document.getElementById('output-section').style.display = 'block';
+                
+                // Scroll smoothly to output
+                document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+
+            }, 1200);
+        }
+
+        function switchTab(index) {
+            // Update Active Buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach((btn, idx) => {
+                if(idx === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Update Active Cards
+            const cards = document.querySelectorAll('.proposal-card');
+            cards.forEach((card, idx) => {
+                if(idx === index) card.classList.add('active');
+                else card.classList.remove('active');
+            });
+        }
+
+        function resetForm() {
+            document.getElementById('action-research-form').reset();
+            document.getElementById('output-section').style.display = 'none';
+            document.getElementById('loading-state').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
