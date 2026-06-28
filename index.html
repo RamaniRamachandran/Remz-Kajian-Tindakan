@@ -3,600 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-KAJIAN TINDAKAN</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <title>e-KAJIAN TINDAKAN - Penjana Idea AI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B192C',
+                            900: '#1E3E62',
+                        },
+                        gold: {
+                            400: '#F1C40F',
+                            500: '#D4AF37',
+                            600: '#AA7C11',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root {
-            --navy-primary: #0A192F;
-            --navy-light: #172A45;
-            --gold-primary: #D4AF37;
-            --gold-hover: #AA7C11;
-            --white: #FFFFFF;
-            --gray-bg: #F8F9FA;
-            --gray-text: #4A5568;
-            --border-color: #E2E8F0;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--gray-bg);
-            color: var(--navy-primary);
-            line-height: 1.6;
-        }
-
-        /* Hero & Logo Section */
-        header {
-            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
-            color: var(--white);
-            padding: 4rem 2rem 5rem 2rem;
-            text-align: center;
-            position: relative;
-            border-bottom: 5px solid var(--gold-primary);
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* Branding Styles */
-        .brand-container {
-            margin-bottom: 1.5rem;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .logo-rr {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--gold-primary);
-            line-height: 1;
-            letter-spacing: -2px;
-            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            display: inline-block;
-            border: 3px solid var(--gold-primary);
-            padding: 0.2rem 0.8rem;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-        }
-
-        .educator-name {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--gold-primary);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            letter-spacing: 2px;
-            color: var(--white);
-            margin-bottom: 1rem;
-            animation: fadeInDown 0.8s ease 0.2s forwards;
-            opacity: 0;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #E2E8F0;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: -3rem auto 4rem auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Form Card */
-        .form-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--gold-primary);
-            animation: fadeInUp 1s ease;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-title { font-size: 2.2rem; }
-            .form-card { padding: 1.5rem; }
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group label {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            color: var(--navy-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .input-group label i {
-            color: var(--gold-primary);
-        }
-
-        .input-group input, .input-group select {
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-            background-color: #FCFDFE;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-            background-color: var(--white);
-        }
-
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-submit {
-            background-color: var(--navy-primary);
-            color: var(--white);
-            border: 2px solid var(--navy-primary);
-        }
-
-        .btn-submit:hover {
-            background-color: var(--navy-light);
-            border-color: var(--navy-light);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(10, 25, 47, 0.3);
-        }
-
-        .btn-reset {
-            background-color: transparent;
-            color: var(--gray-text);
-            border: 2px solid var(--border-color);
-        }
-
-        .btn-reset:hover {
-            background-color: #EDF2F7;
-            color: var(--navy-primary);
-            border-color: var(--navy-primary);
-        }
-
-        /* Loading Spinner */
-        .loading {
-            display: none;
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #E2E8F0;
-            border-top: 5px solid var(--gold-primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem auto;
-        }
-
-        /* Output Section */
-        #output-section {
-            display: none;
-            margin-top: 4rem;
-        }
-
-        .output-heading {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .output-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--gold-primary);
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .tab-btn {
-            background: var(--white);
-            border: 1px solid var(--border-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            color: var(--navy-primary);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .tab-btn.active {
-            background: var(--navy-primary);
-            color: var(--white);
-            border-color: var(--navy-primary);
-        }
-
-        .tab-btn:hover:not(.active) {
-            border-color: var(--gold-primary);
-            color: var(--gold-primary);
-        }
-
-        .proposal-card {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border-left: 6px solid var(--gold-primary);
-            padding: 3rem;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .proposal-card.active {
-            display: block;
-        }
-
-        .output-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .output-block {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1.5rem;
-        }
-
-        .output-block:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .output-block h3 {
-            font-size: 1.1rem;
-            color: var(--navy-primary);
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .output-block h3 i {
-            color: var(--gold-primary);
-            width: 20px;
-        }
-
-        .output-block p, .output-block ul {
-            color: var(--gray-text);
-            font-size: 1rem;
-            padding-left: 2rem;
-        }
-
-        .output-block ul {
-            list-style-type: none;
-        }
-
-        .output-block ul li {
-            position: relative;
-            margin-bottom: 0.5rem;
-        }
-
-        .output-block ul li::before {
-            content: "•";
-            color: var(--gold-primary);
-            font-weight: bold;
-            display: inline-block; 
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--navy-primary);
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 5rem;
-            border-top: 3px solid var(--gold-primary);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <!-- Hero & Branding Section -->
-    <header>
-        <div class="brand-container">
-            <div class="logo-rr">RR</div>
-            <div class="educator-name">Ramani Ramachandran, KPM Educator</div>
+    <!-- Header & Logo Section -->
+    <header class="bg-navy-800 py-8 text-center border-b border-gold-500/30 shadow-lg">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <!-- Custom RR Logo Concept referenced from Gemini_Generated_Image_7yjh267yjh267yjh.png stylized in Gold -->
+            <div class="w-20 h-20 mb-3 flex items-center justify-center border-2 border-gold-500 rounded-full bg-navy-900 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                <span class="text-4xl font-extrabold text-gold-500 tracking-tighter italic">RR</span>
+            </div>
+            <h1 class="text-xl font-bold text-white tracking-wide uppercase">Ramani Ramachandran</h1>
+            <p class="text-sm font-semibold text-gold-500 tracking-widest mt-0.5">KPM Educator</p>
         </div>
-        <h1 class="hero-title" style="opacity: 1;">e-KAJIAN TINDAKAN</h1>
-        <p class="hero-subtitle" style="opacity: 1;">Jana idea kajian tindakan secara automatik menggunakan kata kunci.</p>
     </header>
 
-    <div class="container">
-        <!-- User Input Section -->
-        <section class="form-card">
-            <form id="action-research-form" onsubmit="generateResearch(event)">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="isu"><i class="fa-solid fa-triangle-exclamation"></i> Isu / Masalah Murid</label>
-                        <input type="text" id="isu" placeholder="Contoh: Sukar mengingati sifir, Lemah membina ayat" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="subjek"><i class="fa-solid fa-book-bookmark"></i> Mata Pelajaran / Bidang</label>
-                        <input type="text" id="subjek" placeholder="Contoh: Matematik, Bahasa Melayu, Sains" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="tahap"><i class="fa-solid fa-graduation-cap"></i> Tahap Murid</label>
-                        <select id="tahap" required>
-                            <option value="" disabled selected>Pilih Tahap Murid</option>
-                            <option value="Prasekolah">Prasekolah</option>
-                            <option value="Rendah Rendah (Tahun 1-3)">Rendah Rendah (Tahun 1-3)</option>
-                            <option value="Rendah Atas (Tahun 4-6)">Rendah Atas (Tahun 4-6)</option>
-                            <option value="Menengah Rendah (Tingkatan 1-3)">Menengah Rendah (Tingkatan 1-3)</option>
-                            <option value="Menengah Atas (Tingkatan 4-5)">Menengah Atas (Tingkatan 4-5)</option>
-                            <option value="Pra-Universiti (Tingkatan 6/Matrikulasi)">Pra-Universiti (Tingkatan 6/Matrikulasi)</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="kata-kunci"><i class="fa-solid fa-tags"></i> Kata Kunci Tambahan</label>
-                        <input type="text" id="kata-kunci" placeholder="Contoh: Digital, Gamifikasi, Kad Imbasan" required>
-                    </div>
-                </div>
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-submit"><i class="fa-solid fa-wand-magic-sparkles"></i> Jana Idea Kajian</button>
-                    <button type="button" class="btn btn-reset" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-                </div>
-            </form>
-        </section>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-navy-800 to-navy-900 text-white text-center py-16 px-4 border-b-4 border-gold-500">
+        <div class="max-w-3xl mx-auto">
+            <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Sistem Pintar AI</span>
+            <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3 tracking-tight">
+                e-<span class="text-gold-500">KAJIAN TINDAKAN</span>
+            </h2>
+            <p class="text-base md:text-lg text-slate-300 font-medium">
+                Jana idea kajian tindakan secara automatik menggunakan kata kunci.
+            </p>
+        </div>
+    </section>
 
-        <!-- Loading State -->
-        <div class="loading" id="loading-state">
-            <div class="spinner"></div>
-            <p>Memproses data dan menjana 3 cadangan kajian tindakan terbaik...</p>
+    <!-- Main Content: Input & Output Panels -->
+    <main class="container mx-auto max-w-5xl px-4 py-12 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- User Input Form Section -->
+        <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-md border border-slate-200/80 h-fit">
+            <h3 class="text-lg font-bold text-navy-900 border-b pb-3 mb-5 flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-gold-600"></i> Pemilihan Parameter
+            </h3>
+            
+            <form id="generatorForm" class="space-y-4" onsubmit="generateActionResearch(event)">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Isu / Masalah Murid</label>
+                    <input type="text" id="isu" required placeholder="Contoh: Sukar menghafal sifir, kurang fokus" 
+                        class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Mata Pelajaran / Bidang</label>
+                    <input type="text" id="subjek" required placeholder="Contoh: Matematik, Bahasa Melayu" 
+                        class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Tahap Murid</label>
+                    <select id="tahap" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
+                        <option value="Tahap 1 (Tahun 1-3)">Tahap 1 (Tahun 1-3)</option>
+                        <option value="Tahap 2 (Tahun 4-6)" selected>Tahap 2 (Tahun 4-6)</option>
+                        <option value="Tingkatan 1-3">Menengah Rendah (Tingkatan 1-3)</option>
+                        <option value="Tingkatan 4-5">Menengah Atas (Tingkatan 4-5)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Kata Kunci Tambahan <span class="text-slate-400 font-normal">(Opsional)</span></label>
+                    <input type="text" id="kataKunci" placeholder="Contoh: Gamifikasi, Pembelajaran Teradun" 
+                        class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
+                </div>
+
+                <button type="submit" 
+                    class="w-full mt-2 bg-gradient-to-r from-navy-800 to-navy-900 hover:from-navy-900 hover:to-slate-900 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 uppercase tracking-wider text-xs flex items-center justify-center gap-2 border-b-2 border-gold-500">
+                    <i class="fa-solid fa-wand-magic-sparkles text-gold-400"></i> Jana Idea Kajian
+                </button>
+            </form>
         </div>
 
         <!-- AI Output Section -->
-        <section id="output-section">
-            <h2 class="output-heading">Cadangan Kajian Tindakan</h2>
-            
-            <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab(0)">Cadangan 1</button>
-                <button class="tab-btn" onclick="switchTab(1)">Cadangan 2</button>
-                <button class="tab-btn" onclick="switchTab(2)">Cadangan 3</button>
-            </div>
+        <div class="lg:col-span-7 flex flex-col">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200/80 flex-grow flex flex-col min-h-[400px]">
+                <h3 class="text-lg font-bold text-navy-900 border-b pb-3 mb-5 flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-gold-600"></i> Hasil Penjana AI
+                    </span>
+                    <span id="statusBadge" class="hidden text-[10px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Selesai</span>
+                </h3>
 
-            <div id="proposals-container">
-                <!-- Cards dynamically inserted here -->
-            </div>
-        </section>
-    </div>
+                <!-- Placeholder state -->
+                <div id="placeholderState" class="flex-grow flex flex-col items-center justify-center text-center p-8">
+                    <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-laptop-code text-2xl"></i>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 max-w-sm">
+                        Sila isi maklumat parameter di sebelah kiri dan klik butang untuk menjana draf cadangan Kajian Tindakan lengkap anda.
+                    </p>
+                </div>
 
-    <footer>
-        <p>&copy; 2026 e-KAJIAN TINDAKAN. Reka bentuk eksklusif untuk Ramani Ramachandran (KPM Educator).</p>
+                <!-- Loading State -->
+                <div id="loadingState" class="hidden flex-grow flex-col items-center justify-center text-center p-8">
+                    <div class="animate-spin rounded-full h-10 w-10 border-4 border-navy-900 border-t-gold-500 mb-4"></div>
+                    <p class="text-sm font-semibold text-navy-900">Menganalisis pedagogi & memproses idea...</p>
+                </div>
+
+                <!-- Real Content Output -->
+                <div id="outputContent" class="hidden space-y-6 flex-grow">
+                    <div class="bg-navy-800 text-white p-4 rounded-xl border-l-4 border-gold-500">
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-gold-400 block mb-1">Cadangan Tajuk Kajian</span>
+                        <h4 id="outTajuk" class="text-base font-bold leading-snug"></h4>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-navy-900 block mb-1"><i class="fa-solid fa-bullseye text-gold-600 mr-1"></i> Objektif Kajian</span>
+                            <p id="outObjektif" class="text-xs text-slate-600 leading-relaxed"></p>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-navy-900 block mb-1"><i class="fa-solid fa-users text-gold-600 mr-1"></i> Kumpulan Sasaran</span>
+                            <p id="outSasaran" class="text-xs text-slate-600 leading-relaxed"></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <span class="text-xs font-bold text-navy-900 block mb-2"><i class="fa-solid fa-list-check text-gold-600 mr-1"></i> Cadangan Aktiviti Intervensi</span>
+                        <ul id="outIntervensi" class="text-xs text-slate-600 space-y-1.5 list-disc pl-4"></ul>
+                    </div>
+
+                    <!-- Prompt Generator Display Box -->
+                    <div class="mt-4">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Prompt Struktur AI (Salin untuk ChatGPT/Gemini)</span>
+                            <button onclick="copyPrompt()" class="text-xs text-navy-900 hover:text-gold-600 font-semibold flex items-center gap-1 transition">
+                                <i id="copyIcon" class="fa-regular fa-copy"></i> <span id="copyText">Salin Prompt</span>
+                            </button>
+                        </div>
+                        <textarea id="promptTextArea" readonly class="w-full p-3 bg-slate-900 text-slate-300 rounded-lg text-xs font-mono h-24 focus:outline-none border border-slate-700 shadow-inner resize-none"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-800 text-slate-400 text-xs py-4 text-center border-t border-slate-700">
+        <p>&copy; 2026 e-Kajian Tindakan. Direka khas untuk warga pendidik KPM.</p>
     </footer>
 
+    <!-- Interactive Logic Script -->
     <script>
-        function generateResearch(event) {
+        function generateActionResearch(event) {
             event.preventDefault();
 
-            document.getElementById('loading-state').style.display = 'block';
-            document.getElementById('output-section').style.display = 'none';
-
-            // Ambil input terkini
-            const isu = document.getElementById('isu').value.trim();
-            const subjek = document.getElementById('subjek').value.trim();
+            // Form Values
+            const isu = document.getElementById('isu').value;
+            const subjek = document.getElementById('subjek').value;
             const tahap = document.getElementById('tahap').value;
-            const kataKunci = document.getElementById('kata-kunci').value.trim();
+            const kataKunci = document.getElementById('kataKunci').value || "Pendekatan Praktikal";
+
+            // Component Layout UI
+            const placeholder = document.getElementById('placeholderState');
+            const loading = document.getElementById('loadingState');
+            const content = document.getElementById('outputContent');
+            const badge = document.getElementById('statusBadge');
+
+            // Toggle States
+            placeholder.classList.add('hidden');
+            content.classList.add('hidden');
+            badge.classList.add('hidden');
+            loading.classList.remove('hidden');
 
             setTimeout(() => {
-                const container = document.getElementById('proposals-container');
-                container.innerHTML = ''; 
+                loading.classList.add('hidden');
+                content.classList.remove('hidden');
+                badge.classList.remove('hidden');
 
-                const frameworks = [
-                    {
-                        type: `Pendekatan Gamifikasi Digital Berasaskan ${kataKunci}`,
-                        inovasi: `Aplikasi Pintar Pro-${subjek} (${kataKunci} E-Kit)`,
-                        intervensi: `Pelaksanaan aktiviti intervensi berstruktur memanfaatkan elemen interaktif ${kataKunci} yang disesuaikan mengikut keupayaan kognitif murid bagi mengatasi isu [${isu}].`
-                    },
-                    {
-                        type: `Pendekatan Bahan Maujud Visual Kreatif (Modul ${kataKunci})`,
-                        inovasi: `Kit Interaktif Multi-Sensori ${subjek} (Edisi ${kataKunci})`,
-                        intervensi: `Penggunaan kit atau modul fizikal dan visual bertemakan ${kataKunci} bagi mempermudah pemahaman konsep abstrak [${isu}] secara berperingkat.`
-                    },
-                    {
-                        type: `Sistem Strategi Pemikiran Kritikal Didik Hibur (${kataKunci})`,
-                        inovasi: `Kad Imbasan & Formula Akronim Masteri ${subjek}`,
-                        intervensi: `Pengenalan teknik penstrukturan maklumat dan formula kreatif berpandukan konsep ${kataKunci} bagi memecahkan masalah kompleks dalam [${isu}].`
-                    }
-                ];
+                // Dynamic simulation algorithm matching input criteria
+                const tajuk = `Meningkatkan Penguasaan Topik Berfokus Dalam Subjek ${subjek} Melalui Kaedah Intervensi Terarah Bagi Murid ${tahap}`;
+                document.getElementById('outTajuk').innerText = tajuk;
 
-                frameworks.forEach((fw, index) => {
-                    const isActive = index === 0 ? 'active' : '';
-                    const tajukKajian = `Meningkatkan Penguasaan ${isu} dalam Mata Pelajaran ${subjek} bagi Murid ${tahap} Melalui ${fw.type}`;
+                document.getElementById('outObjektif').innerText = `Membantu murid mengatasi masalah [${isu}] sekali gus meningkatkan kefahaman konseptual yang optimum dalam subjek ${subjek}.`;
+                
+                document.getElementById('outSasaran').innerText = `Fokus khusus kepada kumpulan murid yang terjejas di peringkat ${tahap} berdasarkan data pentaksiran bilik darjah.`;
 
-                    const cardHTML = `
-                        <div class="proposal-card ${isActive}" id="proposal-${index}">
-                            <div class="output-grid">
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-heading"></i> Tajuk Kajian Tindakan</h3>
-                                    <p><strong>${tajukKajian}</strong></p>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-lightbulb"></i> Cadangan Tajuk Inovasi</h3>
-                                    <p><strong>${fw.inovasi}</strong></p>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-circle-exclamation"></i> Masalah Kajian</h3>
-                                    <p>Murid ${tahap} didapati menghadapi kekangan utama untuk memahami dan menguasai aspek <strong>${isu}</strong> dalam mata pelajaran ${subjek}. Hal ini mengakibatkan kemerosotan prestasi akademik dan kurangnya pelibatan aktif semasa PdP.</p>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-bolt"></i> Pencetus Idea</h3>
-                                    <p>Melalui refleksi kendiri pengajaran terdahulu, pendekatan konvensional kurang mampan untuk merangsang minda murid. Integrasi elemen <em>${kataKunci}</em> melalui <em>${fw.type}</em> dipilih bagi menyediakan suasana pembelajaran yang lebih berimpak tinggi.</p>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-bullseye"></i> Objektif Kajian</h3>
-                                    <ul>
-                                        <li>Meningkatkan kefahaman dan tahap penguasaan murid terhadap <strong>${isu}</strong> dengan bantuan intervensi ${fw.inovasi}.</li>
-                                        <li>Memantapkan kualiti amalan pedagogi guru agar lebih dinamik, inklusif, dan berpusatkan murid ${tahap}.</li>
-                                    </ul>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-question"></i> Persoalan Kajian</h3>
-                                    <ul>
-                                        <li>Adakah pengenalan ${fw.inovasi} dapat membantu meningkatkan kemahiran murid dalam aspek <strong>${isu}</strong>?</li>
-                                        <li>Bagaimanakah corak pelibatan dan maklum balas murid ${tahap} selepas melalui intervensi ini?</li>
-                                    </ul>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-puzzle-piece"></i> Cadangan Intervensi / Inovasi</h3>
-                                    <p>${fw.intervensi}</p>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-gears"></i> Metodologi Ringkas</h3>
-                                    <p>Kajian tindakan ini menerapkan acuan kitaran Model Kemmis & McTaggart, merangkumi empat fasa utama iaitu Refleksi (Reflect), Perancangan (Plan), Tindakan (Act), dan Pemerhatian (Observe).</p>
-                                </div>
-                                <div class="output-block">
-                                    <h3><i class="fa-solid fa-clipboard-check"></i> Instrumen Cadangan</h3>
-                                    <ul>
-                                        <li>Ujian Pra dan Ujian Pos (Data Kuantitatif untuk prestasi <strong>${isu}</strong>).</li>
-                                        <li>Senarai Semak Pemerhatian Berstruktur (Data Kualitatif pelibatan murid).</li>
-                                        <li>Soal Selidik Persepsi/Temu Bual Ringkas (Mengukur motivasi murid).</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    container.innerHTML += cardHTML;
-                });
+                // Interventions build
+                const intervensiList = document.getElementById('outIntervensi');
+                intervensiList.innerHTML = `
+                    <li><strong>Fasa 1:</strong> Diagnostik awal untuk memetakan punca utama murid mengalami (${isu}).</li>
+                    <li><strong>Fasa 2:</strong> Pelaksanaan modul berasaskan strategi "${kataKunci}".</li>
+                    <li><strong>Fasa 3:</strong> Penilaian impak menggunakan instrumen pra-ujian dan pasca-ujian terancang.</li>
+                `;
 
-                document.getElementById('loading-state').style.display = 'none';
-                document.getElementById('output-section').style.display = 'block';
-                document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+                // System Prompt generation structure
+                const promptStructure = `Bertindak sebagai pakar penyelidikan akademik KPM. Bina satu draf kertas cadangan Kajian Tindakan lengkap berdasarkan parameter berikut:\n- Isu Masalah: ${isu}\n- Mata Pelajaran: ${subjek}\n- Kumpulan Sasaran: ${tahap}\n- Pendekatan Utama: ${kataKunci}\nSediakan langkah metodologi gelung Kemmis & McTaggart serta instrumen analisis data yang sesuai.`;
+                document.getElementById('promptTextArea').value = promptStructure;
 
-            }, 1200);
+            }, 1200); // Simulated delay for professional AI experience
         }
 
-        function switchTab(index) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach((btn, idx) => {
-                if(idx === index) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
+        function copyPrompt() {
+            const copyText = document.getElementById("promptTextArea");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
 
-            const cards = document.querySelectorAll('.proposal-card');
-            cards.forEach((card, idx) => {
-                if(idx === index) card.classList.add('active');
-                else card.classList.remove('active');
-            });
-        }
+            const btnText = document.getElementById("copyText");
+            const btnIcon = document.getElementById("copyIcon");
+            
+            btnText.innerText = "Disalin!";
+            btnIcon.className = "fa-solid fa-check text-emerald-500";
 
-        function resetForm() {
-            document.getElementById('action-research-form').reset();
-            document.getElementById('output-section').style.display = 'none';
-            document.getElementById('loading-state').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                btnText.innerText = "Salin Prompt";
+                btnIcon.className = "fa-regular fa-copy";
+            }, 2000);
         }
     </script>
 </body>
