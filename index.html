@@ -3,155 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Kajian Tindakan - Penjana Idea AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>e-KAJIAN TINDAKAN - Jana Idea Kajian Automatik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --navy-dark: #0A192F;
-            --navy-light: #172A45;
-            --gold: #D4AF37;
-            --gold-hover: #AA8B2C;
-            --white: #FFFFFF;
-            --gray-light: #F4F6F9;
-            --text-dark: #333333;
-            --text-muted: #666666;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
         body {
-            background-color: var(--gray-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
         }
-
-        /* --- HERO SECTION --- */
-        header {
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
-            color: var(--white);
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 4px solid var(--gold);
+        .font-serif-academic {
+            font-family: 'Playfair Display', serif;
         }
-
-        .logo-container {
-            display: inline-block;
-            margin-bottom: 20px;
-            animation: fadeInDown 0.8s ease;
+        .color-navy { color: #0f172a; }
+        .bg-navy { background-color: #0f172a; }
+        .border-gold { border-color: #d4af37; }
+        .text-gold { color: #d4af37; }
+        .bg-gold { background-color: #d4af37; }
+        .bg-gold-hover:hover { background-color: #b8962e; }
+        
+        /* Animasi Ringkas */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .logo-rr {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -2px;
-            line-height: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
         }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
 
-        .logo-rr span:nth-child(1) {
-            color: var(--gold);
-        }
+    <header class="bg-navy text-white border-b-4 border-gold shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gold p-2 rounded-lg text-navy font-bold text-xl shadow-inner">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-wider block font-serif-academic text-gold">e-KAJIAN TINDAKAN</span>
+                    <span class="text-xs text-slate-400 block tracking-widest uppercase">Sistem Penjana Idea Pintar</span>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium tracking-wide">
+                <a href="#utama" class="hover:text-gold transition duration-300">Utama</a>
+                <a href="#penjana" class="hover:text-gold transition duration-300">Penjana Idea</a>
+                <a href="#output" class="hover:text-gold transition duration-300">Keputusan</a>
+            </div>
+        </div>
+    </header>
 
-        .logo-rr span:nth-child(2) {
-            color: var(--gold);
-            display: inline-block;
-            transform: scaleX(-1);
-            margin-left: 2px;
-        }
+    <section id="utama" class="relative bg-gradient-to-b from-slate-900 to-slate-850 text-white py-20 px-4 overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+            <span class="inline-block bg-gold/10 text-gold border border-gold/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                Inovasi Pedagogi Abad Ke-21
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight font-serif-academic leading-tight">
+                e-KAJIAN TINDAKAN
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Jana idea kajian tindakan secara automatik menggunakan kata kunci. Mudahkan proses perancangan penyelidikan tindakan anda dengan format DBP yang standard.
+            </p>
+            <div class="pt-4">
+                <a href="#penjana" class="bg-gold text-navy font-bold px-8 py-4 rounded-xl shadow-lg hover:bg-white hover:scale-105 transition-all duration-300 inline-flex items-center space-x-3 text-base">
+                    <span>Mula Jana Idea Sekarang</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-        .logo-subtext {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--white);
-            margin-top: 5px;
-            font-weight: 500;
-        }
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <section id="penjana" class="lg:col-span-5 bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 md:p-8 sticky top-28">
+                <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+                    <i class="fa-solid fa-sliders text-2xl text-gold"></i>
+                    <h2 class="text-xl font-bold text-navy tracking-tight">Parameter Kajian</h2>
+                </div>
+                
+                <form id="promptForm" class="space-y-5" onsubmit="generateIdea(event)">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-circle-exclamation text-amber-500 mr-1"></i> Isu / Masalah Murid
+                        </label>
+                        <input type="text" id="isu" required placeholder="Contoh: Tidak menguasai sifir 7 hingga 9, sukar mengeja perkataan KVKK" 
+                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-gold/50 focus:border-gold outline-none transition duration-200 text-sm">
+                    </div>
 
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            animation: fadeInUp 0.8s ease;
-        }
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-book-bookmark text-indigo-500 mr-1"></i> Mata Pelajaran / Bidang
+                        </label>
+                        <input type="text" id="subjek" required placeholder="Contoh: Matematik, Bahasa Melayu, Sains" 
+                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-gold/50 focus:border-gold outline-none transition duration-200 text-sm">
+                    </div>
 
-        header p {
-            font-size: 1.2rem;
-            color: #CCD6F6;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-            animation: fadeInUp 1s ease;
-        }
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-users text-emerald-500 mr-1"></i> Tahap Murid
+                        </label>
+                        <select id="tahap" required 
+                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-gold/50 focus:border-gold outline-none transition duration-200 text-sm appearance-none cursor-pointer">
+                            <option value="" disabled selected>Pilih Tahap Murid</option>
+                            <option value="Prasekolah">Prasekolah</option>
+                            <option value="Sekolah Rendah (Tahap 1)">Sekolah Rendah (Tahap 1)</option>
+                            <option value="Sekolah Rendah (Tahap 2)">Sekolah Rendah (Tahap 2)</option>
+                            <option value="Sekolah Menengah Rendah (Ting. 1-3)">Sekolah Menengah Rendah (Ting. 1-3)</option>
+                            <option value="Sekolah Menengah Atas (Ting. 4-5)">Sekolah Menengah Atas (Ting. 4-5)</option>
+                            <option value="Pra-Universiti / Tingkatan 6">Pra-Universiti / Tingkatan 6</option>
+                        </select>
+                    </div>
 
-        /* --- MAIN CONTAINER --- */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* --- INPUT SECTION --- */
-        .input-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid var(--navy-dark);
-            margin-bottom: 40px;
-            transition: var(--transition);
-        }
-
-        .input-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--navy-dark);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-group label i {
-            color: var(--gold);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 12px 16px;
-            border: 2px solid #E2E8F0;
+                    <div>
+                        <label class
