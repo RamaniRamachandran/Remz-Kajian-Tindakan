@@ -1,271 +1,219 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>e KAJIAN TINDAKAN</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
-body{
-    background: linear-gradient(135deg,#081b3a,#102b5f);
-    min-height:100vh;
-}
-
-.glass{
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    border:1px solid rgba(255,255,255,0.15);
-}
-
-.card-hover{
-    transition:0.4s;
-}
-
-.card-hover:hover{
-    transform:translateY(-5px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.25);
-}
-
-.fade-in{
-    animation:fade .7s ease;
-}
-
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.gold-text{
-color:#D4AF37;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-KAJIAN TINDAKAN | Penjana Idea</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0f172a',
+                        gold: '#fbbf24',
+                        goldDark: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #fbbf24;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
 
-<body class="text-white">
+    <header class="bg-navy text-white shadow-lg border-b-4 border-gold">
+        <div class="max-w-6xl mx-auto px-6 py-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
+                <i class="fa-solid fa-lightbulb text-gold mr-3 animate-pulse"></i>e-KAJIAN TINDAKAN
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 font-light">
+                Jana idea kajian tindakan secara automatik menggunakan kata kunci.
+            </p>
+        </div>
+    </header>
 
-<!-- HERO -->
-<section class="text-center py-16 px-6">
+    <main class="flex-grow max-w-6xl mx-auto w-full px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-4 space-y-6">
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-navy">
+                <h2 class="text-xl font-semibold mb-6 flex items-center text-navy">
+                    <i class="fa-solid fa-keyboard mr-2 text-gold"></i> Maklumat Kajian
+                </h2>
+                
+                <form id="kajianForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Isu / Masalah Murid</label>
+                        <input type="text" id="isu" required placeholder="Cth: Sukar mengingat sifir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition">
+                    </div>
 
-<h1 class="text-5xl md:text-6xl font-extrabold gold-text mb-4">
-e KAJIAN TINDAKAN
-</h1>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran / Bidang</label>
+                        <input type="text" id="subjek" required placeholder="Cth: Matematik" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition">
+                    </div>
 
-<p class="text-xl max-w-3xl mx-auto text-gray-200">
-Jana idea kajian tindakan secara automatik menggunakan kata kunci.
-</p>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tahap Murid</label>
+                        <input type="text" id="tahap" required placeholder="Cth: Tahun 4 / Tingkatan 2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition">
+                    </div>
 
-</section>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Objektif Kajian</label>
+                        <textarea id="objektif" required rows="3" placeholder="Cth: Meningkatkan penguasaan darab..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition"></textarea>
+                    </div>
 
-<!-- FORM -->
-<section class="max-w-5xl mx-auto px-5">
+                    <div class="flex gap-3 pt-4">
+                        <button type="submit" class="flex-1 bg-navy hover:bg-slate-800 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-200 flex justify-center items-center">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-2 text-gold"></i> JANA IDEA
+                        </button>
+                        <button type="button" id="resetBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg shadow transition duration-200">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-<div class="glass rounded-3xl p-8 shadow-2xl">
+        <div class="lg:col-span-8">
+            <div id="loading" class="hidden flex-col items-center justify-center h-64 bg-white rounded-xl shadow-md border border-gray-100">
+                <div class="loader mb-4"></div>
+                <p class="text-navy font-medium animate-pulse">Menjana idea secara magis...</p>
+            </div>
 
-<h2 class="text-3xl font-bold mb-8 text-center">
-Maklumat Kajian
-</h2>
+            <div id="emptyState" class="flex flex-col items-center justify-center h-full bg-white rounded-xl shadow-md border border-gray-100 p-10 text-center opacity-70">
+                <i class="fa-solid fa-robot text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-medium text-gray-500">Sedia untuk Menjana</h3>
+                <p class="text-gray-400 mt-2 text-sm">Masukkan maklumat di sebelah kiri dan klik "JANA IDEA" untuk melihat cadangan kepintaran buatan (AI).</p>
+            </div>
 
-<div class="grid md:grid-cols-2 gap-6">
+            <div id="resultsContainer" class="hidden space-y-6">
+                </div>
+        </div>
+    </main>
 
-<div>
-<label class="block mb-2 font-semibold">
-📌 Isu / Masalah Murid
-</label>
-<input
-id="isu"
-type="text"
-placeholder="Contoh: Tidak mengenal huruf"
-class="w-full p-4 rounded-xl text-black">
-</div>
+    <footer class="bg-navy text-center py-6 mt-auto">
+        <p class="text-gray-400 text-sm">© 2026 e-Kajian Tindakan. Hak Cipta Terpelihara.</p>
+    </footer>
 
-<div>
-<label class="block mb-2 font-semibold">
-📚 Mata Pelajaran / Bidang
-</label>
-<input
-id="mata"
-type="text"
-placeholder="Contoh: Bahasa Melayu"
-class="w-full p-4 rounded-xl text-black">
-</div>
+    <script>
+        document.getElementById('kajianForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const isu = document.getElementById('isu').value;
+            const subjek = document.getElementById('subjek').value;
+            const tahap = document.getElementById('tahap').value;
+            const objektifInput = document.getElementById('objektif').value;
 
-<div>
-<label class="block mb-2 font-semibold">
-👨‍🎓 Tahap Murid
-</label>
-<input
-id="tahap"
-type="text"
-placeholder="Contoh: Tahun 2"
-class="w-full p-4 rounded-xl text-black">
-</div>
+            // UI Transitions
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('resultsContainer').classList.add('hidden');
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('loading').classList.add('flex');
 
-<div>
-<label class="block mb-2 font-semibold">
-🔍 Kata Kunci Tambahan
-</label>
-<input
-id="kata"
-type="text"
-placeholder="Contoh: Didik Hibur"
-class="w-full p-4 rounded-xl text-black">
-</div>
+            // Simulate AI Generation delay
+            setTimeout(() => {
+                generateResults(isu, subjek, tahap, objektifInput);
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('loading').classList.remove('flex');
+                document.getElementById('resultsContainer').classList.remove('hidden');
+            }, 1500);
+        });
 
-</div>
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('kajianForm').reset();
+            document.getElementById('resultsContainer').classList.add('hidden');
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('emptyState').classList.remove('hidden');
+        });
 
-<div class="flex flex-wrap justify-center gap-4 mt-10">
+        function generateResults(isu, subjek, tahap, objektifInput) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = ''; // Clear previous
 
-<button
-onclick="janaIdea()"
-class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-8 py-4 rounded-xl transition">
-✨ JANA IDEA KAJIAN
-</button>
+            // Pre-defined interventions for variety
+            const interventions = [
+                { nama: "Kaedah Modul Interaktif Digital", inovasi: "Kit Pintar Digital" },
+                { nama: "Pendekatan Permainan Berstruktur (Gamifikasi)", inovasi: "Kotak Misteri Didik Hibur" },
+                { nama: "Teknik Rakan Sebaya Berpandu (Peer-Tutoring)", inovasi: "Modul Rakan Karib" }
+            ];
 
-<button
-onclick="resetForm()"
-class="bg-red-500 hover:bg-red-400 px-8 py-4 rounded-xl font-bold">
-↺ Reset
-</button>
+            interventions.forEach((intervensi, index) => {
+                const cardHtml = `
+                    <div class="bg-white rounded-xl shadow-lg border-l-4 border-gold overflow-hidden fade-in" style="animation-delay: ${index * 0.2}s">
+                        <div class="bg-navy px-6 py-4 flex justify-between items-center">
+                            <h3 class="text-white font-semibold text-lg flex items-center">
+                                <span class="bg-gold text-navy rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">${index + 1}</span>
+                                Cadangan Idea ${index + 1}
+                            </h3>
+                            <span class="px-3 py-1 bg-white text-navy text-xs font-bold rounded-full">${subjek}</span>
+                        </div>
+                        
+                        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-bookmark text-gold"></i> Tajuk Kajian Tindakan</h4>
+                                    <p class="text-gray-700 mt-1 bg-gray-50 p-3 rounded border">Penggunaan ${intervensi.nama} untuk Mengatasi Isu ${isu} dalam Kalangan Murid ${tahap}.</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-gold"></i> Masalah Kajian</h4>
+                                    <p class="text-gray-700 mt-1">Murid ${tahap} menghadapi kesukaran yang ketara dalam ${isu} semasa sesi Pengajaran dan Pembelajaran (PdP) ${subjek}.</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-bullseye text-gold"></i> Objektif Kajian</h4>
+                                    <p class="text-gray-700 mt-1">${objektifInput}</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-circle-question text-gold"></i> Persoalan Kajian</h4>
+                                    <p class="text-gray-700 mt-1">Adakah penggunaan ${intervensi.nama} dapat membantu menyelesaikan isu ${isu} bagi murid ${tahap}?</p>
+                                </div>
+                            </div>
 
-</div>
-
-</div>
-
-</section>
-
-<!-- OUTPUT -->
-<section class="max-w-6xl mx-auto px-5 py-14">
-
-<div id="output" class="grid gap-8 md:grid-cols-3"></div>
-
-</section>
-
-
-<script>
-
-function janaIdea(){
-
-let isu=document.getElementById('isu').value;
-let mata=document.getElementById('mata').value;
-let tahap=document.getElementById('tahap').value;
-let kata=document.getElementById('kata').value;
-
-if(isu==="" || mata===""){
-alert("Sila lengkapkan maklumat utama.");
-return;
-}
-
-let output=document.getElementById('output');
-output.innerHTML="";
-
-const intervensi=[
-"Kit Pembelajaran Interaktif",
-"Permainan Didik Hibur Digital",
-"Kad Imbas Pintar",
-"Modul Pembelajaran Berasaskan Permainan",
-"Aplikasi Gamifikasi"
-];
-
-const metodologi=[
-"Model Kajian Tindakan Kemmis dan McTaggart melibatkan perancangan, tindakan, pemerhatian dan refleksi.",
-"Pendekatan gelung kajian tindakan dua kitaran.",
-"Reka bentuk kajian tindakan berasaskan intervensi bilik darjah."
-];
-
-const instrumen=[
-"Ujian pra dan pasca, pemerhatian dan senarai semak.",
-"Soal selidik, analisis dokumen dan temu bual.",
-"Rekod pemerhatian, lembaran kerja dan refleksi murid."
-];
-
-for(let i=1;i<=3;i++){
-
-let inter=intervensi[Math.floor(Math.random()*intervensi.length)];
-let metod=metodologi[Math.floor(Math.random()*metodologi.length)];
-let inst=instrumen[Math.floor(Math.random()*instrumen.length)];
-
-let card=`
-<div class="glass rounded-3xl p-7 card-hover fade-in">
-
-<h3 class="text-2xl font-bold gold-text mb-4">
-Cadangan ${i}
-</h3>
-
-<div class="space-y-4 text-sm leading-7">
-
-<p><b>📖 Tajuk Kajian:</b><br>
-Keberkesanan ${inter} dalam Mengatasi Masalah "${isu}" dalam Kalangan Murid ${tahap} bagi Mata Pelajaran ${mata}.
-</p>
-
-<p><b>⚠️ Masalah Kajian:</b><br>
-Murid ${tahap} didapati mengalami masalah ${isu} yang menjejaskan pencapaian dalam ${mata}.
-</p>
-
-<p><b>💡 Pencetus Idea:</b><br>
-Pemerhatian guru menunjukkan murid kurang menguasai kemahiran berkaitan ${isu}. Pendekatan ${kata || "berpusatkan murid"} dicadangkan.
-</p>
-
-<p><b>🎯 Objektif Kajian:</b><br>
-Meningkatkan penguasaan murid terhadap kemahiran berkaitan ${isu}.
-</p>
-
-<p><b>❓ Persoalan Kajian:</b><br>
-Adakah penggunaan ${inter} dapat meningkatkan penguasaan murid?
-</p>
-
-<p><b>🚀 Cadangan Intervensi / Inovasi:</b><br>
-${inter}
-</p>
-
-<p><b>🔬 Metodologi Ringkas:</b><br>
-${metod}
-</p>
-
-<p><b>📝 Instrumen Cadangan:</b><br>
-${inst}
-</p>
-
-<p><b>🏆 Cadangan Tajuk Inovasi:</b><br>
-"${kata || "SMART"}-${i} : Inovasi ${inter}"
-</p>
-
-</div>
-
-</div>
-`;
-
-output.innerHTML += card;
-
-}
-
-window.scrollTo({
-top:output.offsetTop-80,
-behavior:"smooth"
-});
-
-}
-
-function resetForm(){
-
-document.getElementById('isu').value="";
-document.getElementById('mata').value="";
-document.getElementById('tahap').value="";
-document.getElementById('kata').value="";
-
-document.getElementById('output').innerHTML="";
-
-}
-
-</script>
-
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-bolt text-gold"></i> Pencetus Idea</h4>
+                                    <p class="text-gray-700 mt-1">Refleksi guru mendapati pendekatan tradisional kurang berkesan untuk mengatasi isu ${isu}, justeru memerlukan elemen interaktif.</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-toolbox text-gold"></i> Cadangan Intervensi / Inovasi</h4>
+                                    <p class="text-gray-700 mt-1">${intervensi.nama}</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-star text-gold"></i> Cadangan Tajuk Inovasi</h4>
+                                    <p class="text-gray-700 mt-1 font-semibold text-goldDark">"${intervensi.inovasi} ${subjek}"</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-microscope text-gold"></i> Metodologi Ringkas</h4>
+                                    <p class="text-gray-700 mt-1">Model Kemmis & McTaggart (Tinjauan awal, Perancangan, Pelaksanaan, Pemerhatian, Refleksi).</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-navy font-bold flex items-center gap-2"><i class="fa-solid fa-clipboard-check text-gold"></i> Instrumen Cadangan</h4>
+                                    <p class="text-gray-700 mt-1">Ujian Pra & Pos, Pemerhatian Tingkah Laku, Temu Bual Ringkas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+    </script>
 </body>
 </html>
