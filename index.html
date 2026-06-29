@@ -3,247 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-KAJIAN TINDAKAN - Penjana Idea AI</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            800: '#0B192C',
-                            900: '#1E3E62',
-                        },
-                        gold: {
-                            400: '#F1C40F',
-                            500: '#D4AF37',
-                            600: '#AA7C11',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>e-KAJIAN TINDAKAN - RR Innovations</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* --- Core Reset & Palette --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --navy-dark: #0a192f;
+            --navy-mid: #112240;
+            --navy-light: #233554;
+            --gold: #d4af37;
+            --gold-glow: #f3e5ab;
+            --electric-blue: #00f2ff;
+            --white: #ffffff;
+            --text-muted: #a8b2d1;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
-
-    <!-- Header & Logo Section -->
-    <header class="bg-navy-800 py-8 text-center border-b border-gold-500/30 shadow-lg">
-        <div class="container mx-auto px-4 flex flex-col items-center">
-            <!-- Custom RR Logo Concept referenced from Gemini_Generated_Image_7yjh267yjh267yjh.png stylized in Gold -->
-            <div class="w-20 h-20 mb-3 flex items-center justify-center border-2 border-gold-500 rounded-full bg-navy-900 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                <span class="text-4xl font-extrabold text-gold-500 tracking-tighter italic">RR</span>
-            </div>
-            <h1 class="text-xl font-bold text-white tracking-wide uppercase">Ramani Ramachandran</h1>
-            <p class="text-sm font-semibold text-gold-500 tracking-widest mt-0.5">KPM Educator</p>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-b from-navy-800 to-navy-900 text-white text-center py-16 px-4 border-b-4 border-gold-500">
-        <div class="max-w-3xl mx-auto">
-            <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Sistem Pintar AI</span>
-            <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3 tracking-tight">
-                e-<span class="text-gold-500">KAJIAN TINDAKAN</span>
-            </h2>
-            <p class="text-base md:text-lg text-slate-300 font-medium">
-                Jana idea kajian tindakan secara automatik menggunakan kata kunci.
-            </p>
-        </div>
-    </section>
-
-    <!-- Main Content: Input & Output Panels -->
-    <main class="container mx-auto max-w-5xl px-4 py-12 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- User Input Form Section -->
-        <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-md border border-slate-200/80 h-fit">
-            <h3 class="text-lg font-bold text-navy-900 border-b pb-3 mb-5 flex items-center gap-2">
-                <i class="fa-solid fa-sliders text-gold-600"></i> Pemilihan Parameter
-            </h3>
-            
-            <form id="generatorForm" class="space-y-4" onsubmit="generateActionResearch(event)">
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Isu / Masalah Murid</label>
-                    <input type="text" id="isu" required placeholder="Contoh: Sukar menghafal sifir, kurang fokus" 
-                        class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Mata Pelajaran / Bidang</label>
-                    <input type="text" id="subjek" required placeholder="Contoh: Matematik, Bahasa Melayu" 
-                        class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Tahap Murid</label>
-                    <select id="tahap" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
-                        <option value="Tahap 1 (Tahun 1-3)">Tahap 1 (Tahun 1-3)</option>
-                        <option value="Tahap 2 (Tahun 4-6)" selected>Tahap 2 (Tahun 4-6)</option>
-                        <option value="Tingkatan 1-3">Menengah Rendah (Tingkatan 1-3)</option>
-                        <option value="Tingkatan 4-5">Menengah Atas (Tingkatan 4-5)</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Kata Kunci Tambahan <span class="text-slate-400 font-normal">(Opsional)</span></label>
-                    <input type="text" id="kataKunci" placeholder="Contoh: Gamifikasi, Pembelajaran Teradun" 
-                        class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent transition text-sm">
-                </div>
-
-                <button type="submit" 
-                    class="w-full mt-2 bg-gradient-to-r from-navy-800 to-navy-900 hover:from-navy-900 hover:to-slate-900 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 uppercase tracking-wider text-xs flex items-center justify-center gap-2 border-b-2 border-gold-500">
-                    <i class="fa-solid fa-wand-magic-sparkles text-gold-400"></i> Jana Idea Kajian
-                </button>
-            </form>
-        </div>
-
-        <!-- AI Output Section -->
-        <div class="lg:col-span-7 flex flex-col">
-            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200/80 flex-grow flex flex-col min-h-[400px]">
-                <h3 class="text-lg font-bold text-navy-900 border-b pb-3 mb-5 flex items-center justify-between">
-                    <span class="flex items-center gap-2">
-                        <i class="fa-solid fa-brain text-gold-600"></i> Hasil Penjana AI
-                    </span>
-                    <span id="statusBadge" class="hidden text-[10px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Selesai</span>
-                </h3>
-
-                <!-- Placeholder state -->
-                <div id="placeholderState" class="flex-grow flex flex-col items-center justify-center text-center p-8">
-                    <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-laptop-code text-2xl"></i>
-                    </div>
-                    <p class="text-sm font-medium text-slate-500 max-w-sm">
-                        Sila isi maklumat parameter di sebelah kiri dan klik butang untuk menjana draf cadangan Kajian Tindakan lengkap anda.
-                    </p>
-                </div>
-
-                <!-- Loading State -->
-                <div id="loadingState" class="hidden flex-grow flex-col items-center justify-center text-center p-8">
-                    <div class="animate-spin rounded-full h-10 w-10 border-4 border-navy-900 border-t-gold-500 mb-4"></div>
-                    <p class="text-sm font-semibold text-navy-900">Menganalisis pedagogi & memproses idea...</p>
-                </div>
-
-                <!-- Real Content Output -->
-                <div id="outputContent" class="hidden space-y-6 flex-grow">
-                    <div class="bg-navy-800 text-white p-4 rounded-xl border-l-4 border-gold-500">
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-gold-400 block mb-1">Cadangan Tajuk Kajian</span>
-                        <h4 id="outTajuk" class="text-base font-bold leading-snug"></h4>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-                            <span class="text-xs font-bold text-navy-900 block mb-1"><i class="fa-solid fa-bullseye text-gold-600 mr-1"></i> Objektif Kajian</span>
-                            <p id="outObjektif" class="text-xs text-slate-600 leading-relaxed"></p>
-                        </div>
-                        <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-                            <span class="text-xs font-bold text-navy-900 block mb-1"><i class="fa-solid fa-users text-gold-600 mr-1"></i> Kumpulan Sasaran</span>
-                            <p id="outSasaran" class="text-xs text-slate-600 leading-relaxed"></p>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <span class="text-xs font-bold text-navy-900 block mb-2"><i class="fa-solid fa-list-check text-gold-600 mr-1"></i> Cadangan Aktiviti Intervensi</span>
-                        <ul id="outIntervensi" class="text-xs text-slate-600 space-y-1.5 list-disc pl-4"></ul>
-                    </div>
-
-                    <!-- Prompt Generator Display Box -->
-                    <div class="mt-4">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Prompt Struktur AI (Salin untuk ChatGPT/Gemini)</span>
-                            <button onclick="copyPrompt()" class="text-xs text-navy-900 hover:text-gold-600 font-semibold flex items-center gap-1 transition">
-                                <i id="copyIcon" class="fa-regular fa-copy"></i> <span id="copyText">Salin Prompt</span>
-                            </button>
-                        </div>
-                        <textarea id="promptTextArea" readonly class="w-full p-3 bg-slate-900 text-slate-300 rounded-lg text-xs font-mono h-24 focus:outline-none border border-slate-700 shadow-inner resize-none"></textarea>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-navy-800 text-slate-400 text-xs py-4 text-center border-t border-slate-700">
-        <p>&copy; 2026 e-Kajian Tindakan. Direka khas untuk warga pendidik KPM.</p>
-    </footer>
-
-    <!-- Interactive Logic Script -->
-    <script>
-        function generateActionResearch(event) {
-            event.preventDefault();
-
-            // Form Values
-            const isu = document.getElementById('isu').value;
-            const subjek = document.getElementById('subjek').value;
-            const tahap = document.getElementById('tahap').value;
-            const kataKunci = document.getElementById('kataKunci').value || "Pendekatan Praktikal";
-
-            // Component Layout UI
-            const placeholder = document.getElementById('placeholderState');
-            const loading = document.getElementById('loadingState');
-            const content = document.getElementById('outputContent');
-            const badge = document.getElementById('statusBadge');
-
-            // Toggle States
-            placeholder.classList.add('hidden');
-            content.classList.add('hidden');
-            badge.classList.add('hidden');
-            loading.classList.remove('hidden');
-
-            setTimeout(() => {
-                loading.classList.add('hidden');
-                content.classList.remove('hidden');
-                badge.classList.remove('hidden');
-
-                // Dynamic simulation algorithm matching input criteria
-                const tajuk = `Meningkatkan Penguasaan Topik Berfokus Dalam Subjek ${subjek} Melalui Kaedah Intervensi Terarah Bagi Murid ${tahap}`;
-                document.getElementById('outTajuk').innerText = tajuk;
-
-                document.getElementById('outObjektif').innerText = `Membantu murid mengatasi masalah [${isu}] sekali gus meningkatkan kefahaman konseptual yang optimum dalam subjek ${subjek}.`;
-                
-                document.getElementById('outSasaran').innerText = `Fokus khusus kepada kumpulan murid yang terjejas di peringkat ${tahap} berdasarkan data pentaksiran bilik darjah.`;
-
-                // Interventions build
-                const intervensiList = document.getElementById('outIntervensi');
-                intervensiList.innerHTML = `
-                    <li><strong>Fasa 1:</strong> Diagnostik awal untuk memetakan punca utama murid mengalami (${isu}).</li>
-                    <li><strong>Fasa 2:</strong> Pelaksanaan modul berasaskan strategi "${kataKunci}".</li>
-                    <li><strong>Fasa 3:</strong> Penilaian impak menggunakan instrumen pra-ujian dan pasca-ujian terancang.</li>
-                `;
-
-                // System Prompt generation structure
-                const promptStructure = `Bertindak sebagai pakar penyelidikan akademik KPM. Bina satu draf kertas cadangan Kajian Tindakan lengkap berdasarkan parameter berikut:\n- Isu Masalah: ${isu}\n- Mata Pelajaran: ${subjek}\n- Kumpulan Sasaran: ${tahap}\n- Pendekatan Utama: ${kataKunci}\nSediakan langkah metodologi gelung Kemmis & McTaggart serta instrumen analisis data yang sesuai.`;
-                document.getElementById('promptTextArea').value = promptStructure;
-
-            }, 1200); // Simulated delay for professional AI experience
+            background-color: var(--navy-dark);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        function copyPrompt() {
-            const copyText = document.getElementById("promptTextArea");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
-
-            const btnText = document.getElementById("copyText");
-            const btnIcon = document.getElementById("copyIcon");
-            
-            btnText.innerText = "Disalin!";
-            btnIcon.className = "fa-solid fa-check text-emerald-500";
-
-            setTimeout(() => {
-                btnText.innerText = "Salin Prompt";
-                btnIcon.className = "fa-regular fa-copy";
-            }, 2000);
+        /* --- Ambient Cosmic Background --- */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
         }
-    </script>
-</body>
-</html>
+
+        /* --- Header / Logo Section --- */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Futuristic Interconnected Monogram RR Logo */
+        .logo-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Particle / Cosmic Swirl Effects */
+        .cosmic-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-top-color: var(--electric-blue);
+            border-bottom-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 8s linear infinite;
+            filter: blur(1px);
+            opacity: 0.6;
+        }
+
+        .cosmic-ring::before {
+            content: '';
+            position: absolute;
+            top: 10px; right: 10px;
+            width: 6px; height: 6px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--electric-blue);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* RR Monogram Graphic */
+        .rr-monogram {
+            width: 110px;
+            height: 110px;
+            filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.6)) drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+            z-index: 2;
+        }
+
+        /* Sub-branding Typography */
+        .brand-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--white);
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            margin-top: 5px;
+        }
+
+        .brand-sub1 {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .brand-sub2 {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            margin: 30px 20px 40px 20px;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--white);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--white) 60%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Main Content Layout --- */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: var(--navy-mid);
+            border: 1px solid rgba(214, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 60px;
+            transition: border-color 0.3s ease;
+        }
+
+        .container:hover {
+            border-color: rgba(0, 242, 255, 0.3);
+        }
+
+        /* --- Form / Input Fields --- */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gold);
+            letter-spacing: 0
