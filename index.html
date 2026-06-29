@@ -1,44 +1,157 @@
-Create a modern and professional AI-powered landing page in Bahasa Melayu Malaysia for educators.
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Kajian Tindakan - Penjana Idea AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy-dark: #0A192F;
+            --navy-light: #172A45;
+            --gold: #D4AF37;
+            --gold-hover: #AA8B2C;
+            --white: #FFFFFF;
+            --gray-light: #F4F6F9;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --transition: all 0.3s ease;
+        }
 
-Title: e KAJIAN TINDAKAN
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-logo-A photorealistic, highly detailed 3D circular emblem badge logo. The emblem is composed of concentric, multi-layered polished metal rings that gradient from electric cyan to a deeper royal blue. Centered within these rings is a large, complex, interlocking, stylized uppercase "RR" monogram, featuring a sleek, high-gloss blue-to-cyan gradient finish. The "RR" is surrounded by a cosmic vortex of glowing particle trails and swirling star dust, precisely matching the pattern and intensity seen in a high-tech badge design. Curved along the bottom inner metal ring, the text 'RR INNOVATIONS' is rendered in a silver metallic sans-serif font. Directly below it, in a smaller, matching font, is the tagline 'FORWARD TOGETHER'. The entire emblem is centered against a dark, swirling background of deep-space-like brushed metal with subtle bokeh lighting and motion blur, creating a powerful sense of speed and futuristic energy. The text is perfectly spelled and placed.
+        body {
+            background-color: var(--gray-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
 
-Purpose:
-This tool helps teachers generate action research ideas automatically based on keywords.
+        /* --- HERO SECTION --- */
+        header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--gold);
+        }
 
-Features:
+        .logo-container {
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease;
+        }
 
-1. Input fields:
+        .logo-rr {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-   * Isu/Masalah Murid
-   * Mata Pelajaran/Bidang
-   * Tahap Murid
-   * Kata Kunci Tambahan
+        .logo-rr span:nth-child(1) {
+            color: var(--gold);
+        }
 
-2. Add a button:
-   [JANA IDEA KAJIAN]
+        .logo-rr span:nth-child(2) {
+            color: var(--gold);
+            display: inline-block;
+            transform: scaleX(-1);
+            margin-left: 2px;
+        }
 
-3. After clicking the button, generate:
+        .logo-subtext {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--white);
+            margin-top: 5px;
+            font-weight: 500;
+        }
 
-   * Tajuk Kajian Tindakan
-   * Masalah Kajian
-   * Pencetus Idea
-   * Objektif Kajian
-   * Persoalan Kajian
-   * Cadangan Intervensi
-   * Metodologi Ringkas
-   * Instrumen Cadangan
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease;
+        }
 
-4. Add a RESET button.
+        header p {
+            font-size: 1.2rem;
+            color: #CCD6F6;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            animation: fadeInUp 1s ease;
+        }
 
-5. Design requirements:
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-   * Academic and professional appearance
-   * Navy blue, white and gold colour theme
-   * Responsive design
-   * Attractive cards and icons
+        /* --- INPUT SECTION --- */
+        .input-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--navy-dark);
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
 
-6. Selamat Maju Jaya
+        .input-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
 
-Generate complete HTML code with embedded CSS and JavaScript in a single file
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: var(--gold);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px 16px;
+            border: 2px solid #E2E8F0;
