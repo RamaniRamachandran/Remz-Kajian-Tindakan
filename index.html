@@ -1,109 +1,37 @@
-<section class="form-card">
+function generateIKTETitle(isu, bidang, tahap) {
+    const b = bidang.toLowerCase();
+    const i = isu.toLowerCase();
+    
+    let template = "";
+    
+    // Domain Mapping Logic
+    if (b.includes('akademik') || b.includes('sains') || b.includes('matematik') || b.includes('bahasa') || b.includes('sejarah') || b.includes('pendidikan islam')) {
+        template = `Meningkatkan Penguasaan ${isu} melalui Teknik Inovatif dalam kalangan Murid ${tahap}`;
+    } 
+    else if (b.includes('kaunseling') || b.includes('psikososial')) {
+        template = `Meningkatkan ${i.includes('keyakinan') || i.includes('motivasi') ? 'Keyakinan Diri' : 'Kesejahteraan Emosi'} melalui Modul Bimbingan dalam kalangan Murid ${tahap}`;
+    }
+    else if (b.includes('disiplin') || b.includes('ponteng')) {
+        template = `Mengurangkan Tingkah Laku ${isu} melalui Pendekatan Mentor-Mentee dalam kalangan Murid ${tahap}`;
+    }
+    else if (b.includes('hem') || b.includes('kehadiran')) {
+        template = `Meningkatkan ${isu} melalui Program Intervensi Strategik dalam kalangan Murid ${tahap}`;
+    }
+    else if (b.includes('kokurikulum') || b.includes('sukan') || b.includes('unit beruniform')) {
+        template = `Meningkatkan Penyertaan ${isu} melalui Sistem Merit dalam kalangan Murid ${tahap}`;
+    }
+    else if (b.includes('kebersihan') || b.includes('keceriaan')) {
+        template = `Membudayakan Amalan ${isu} melalui Program Kelas Ceria dalam kalangan Murid ${tahap}`;
+    }
+    else if (b.includes('nilam') || b.includes('pusat sumber')) {
+        template = `Meningkatkan Minat ${isu} melalui Program NILAM Digital dalam kalangan Murid ${tahap}`;
+    }
+    else if (b.includes('mbpk') || b.includes('pendidikan khas')) {
+        template = `Meningkatkan Kemahiran ${isu} melalui Modul Pembelajaran Berasaskan Bahan Bantu Belajar dalam kalangan Murid ${tahap}`;
+    }
+    else {
+        template = `Meningkatkan ${isu} melalui Strategi PdP Berfokus dalam kalangan Murid ${tahap}`;
+    }
 
-    <div class="input-group">
-        <label>Isu / Masalah Murid</label>
-        <input
-            type="text"
-            id="isu"
-            placeholder="Contoh: Murid sukar menghafal sifir, kurang keyakinan diri, ponteng sekolah, amalan kebersihan kelas kurang memuaskan.">
-    </div>
-
-    <div class="input-group">
-        <label>Bidang Kajian / Program</label>
-        <input
-            type="text"
-            id="bidang"
-            placeholder="Contoh: Matematik, Bahasa Melayu, Kaunseling, HEM, Disiplin, Kokurikulum, NILAM, Kebersihan Kelas, PPDa">
-    </div>
-
-    <div class="input-group">
-        <label>Tahap Murid</label>
-
-        <select id="tahap">
-
-            <option value="">-- Pilih Tahap Murid --</option>
-
-            <optgroup label="Prasekolah">
-                <option>Prasekolah</option>
-            </optgroup>
-
-            <optgroup label="Sekolah Rendah">
-                <option>Tahun 1</option>
-                <option>Tahun 2</option>
-                <option>Tahun 3</option>
-                <option>Tahun 4</option>
-                <option>Tahun 5</option>
-                <option>Tahun 6</option>
-            </optgroup>
-
-            <optgroup label="Sekolah Menengah">
-                <option>Tingkatan 1</option>
-                <option>Tingkatan 2</option>
-                <option>Tingkatan 3</option>
-                <option>Tingkatan 4</option>
-                <option>Tingkatan 5</option>
-            </optgroup>
-
-            <optgroup label="Pendidikan Khas">
-                <option>Pendidikan Khas (MBPK)</option>
-            </optgroup>
-
-            <option>Lain-lain</option>
-
-        </select>
-    </div>
-
-    <div class="input-group">
-        <label>Objektif Kajian</label>
-
-        <textarea
-            id="objektif"
-            rows="3"
-            placeholder="Contoh: Meningkatkan penguasaan sifir darab melalui penggunaan Teknik Petak Sifir dalam tempoh enam minggu."></textarea>
-
-    </div>
-
-    <div class="btn-group">
-
-        <button onclick="janaKajian()">
-            ✨ Jana Draf Kajian
-        </button>
-
-        <button onclick="resetForm()">
-            🔄 Reset
-        </button>
-
-        <button onclick="copyPrompt()">
-            🤖 Salin Prompt AI
-        </button>
-
-        <button onclick="downloadReport()">
-            ⬇️ Muat Turun TXT
-        </button>
-
-    </div>
-
-</section>
-
-<div id="report-output"></div>
-
-<footer>
-
-    <p><strong>Versi 1.0.0</strong></p>
-
-    <p><strong>Hasil Inovasi RR Innovation</strong></p>
-
-    <p><strong>Forward Together</strong></p>
-
-    <br>
-
-    <p>
-        Platform ini mengumpul statistik penggunaan secara anonim bagi tujuan
-        penambahbaikan sistem. Tiada maklumat peribadi dikumpulkan.
-    </p>
-
-    <p>
-        © 2026 RR Innovation. Semua Hak Cipta Terpelihara.
-    </p>
-
-</footer>
+    return template;
+}
