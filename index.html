@@ -1,37 +1,127 @@
-function generateIKTETitle(isu, bidang, tahap) {
-    const b = bidang.toLowerCase();
-    const i = isu.toLowerCase();
-    
-    let template = "";
-    
-    // Domain Mapping Logic
-    if (b.includes('akademik') || b.includes('sains') || b.includes('matematik') || b.includes('bahasa') || b.includes('sejarah') || b.includes('pendidikan islam')) {
-        template = `Meningkatkan Penguasaan ${isu} melalui Teknik Inovatif dalam kalangan Murid ${tahap}`;
-    } 
-    else if (b.includes('kaunseling') || b.includes('psikososial')) {
-        template = `Meningkatkan ${i.includes('keyakinan') || i.includes('motivasi') ? 'Keyakinan Diri' : 'Kesejahteraan Emosi'} melalui Modul Bimbingan dalam kalangan Murid ${tahap}`;
-    }
-    else if (b.includes('disiplin') || b.includes('ponteng')) {
-        template = `Mengurangkan Tingkah Laku ${isu} melalui Pendekatan Mentor-Mentee dalam kalangan Murid ${tahap}`;
-    }
-    else if (b.includes('hem') || b.includes('kehadiran')) {
-        template = `Meningkatkan ${isu} melalui Program Intervensi Strategik dalam kalangan Murid ${tahap}`;
-    }
-    else if (b.includes('kokurikulum') || b.includes('sukan') || b.includes('unit beruniform')) {
-        template = `Meningkatkan Penyertaan ${isu} melalui Sistem Merit dalam kalangan Murid ${tahap}`;
-    }
-    else if (b.includes('kebersihan') || b.includes('keceriaan')) {
-        template = `Membudayakan Amalan ${isu} melalui Program Kelas Ceria dalam kalangan Murid ${tahap}`;
-    }
-    else if (b.includes('nilam') || b.includes('pusat sumber')) {
-        template = `Meningkatkan Minat ${isu} melalui Program NILAM Digital dalam kalangan Murid ${tahap}`;
-    }
-    else if (b.includes('mbpk') || b.includes('pendidikan khas')) {
-        template = `Meningkatkan Kemahiran ${isu} melalui Modul Pembelajaran Berasaskan Bahan Bantu Belajar dalam kalangan Murid ${tahap}`;
-    }
-    else {
-        template = `Meningkatkan ${isu} melalui Strategi PdP Berfokus dalam kalangan Murid ${tahap}`;
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e Kajian Tindakan | RR Innovation</title>
+    <style>
+        :root { --navy: #002147; --gold: #C5A059; --white: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1, h2 { color: var(--navy); text-align: center; }
+        .header-line { border-bottom: 2px solid var(--gold); margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background: var(--navy); color: var(--gold); border: none; padding: 12px 20px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #003366; }
+        #output { margin-top: 30px; padding: 20px; background: #f9f9f9; border-left: 5px solid var(--gold); white-space: pre-wrap; font-size: 0.95em; }
+        footer { text-align: center; font-size: 0.8em; margin-top: 30px; color: #666; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>e Kajian Tindakan</h1>
+    <p style="text-align:center; font-style: italic;">Platform Pintar Penjana Draf Kajian Tindakan - RR Innovation</p>
+    <div class="header-line"></div>
+
+    <div class="form-group">
+        <label>Isu / Masalah Murid</label>
+        <input type="text" id="isu" placeholder="Contoh: Sifir, Ponteng, Keyakinan">
+    </div>
+    <div class="form-group">
+        <label>Bidang Kajian</label>
+        <select id="bidang">
+            <option value="Akademik">Akademik</option>
+            <option value="Kaunseling">Kaunseling</option>
+            <option value="Disiplin">Disiplin</option>
+            <option value="HEM">HEM</option>
+            <option value="Kokurikulum">Kokurikulum</option>
+            <option value="NILAM">NILAM</option>
+            <option value="Kebersihan">Kebersihan</option>
+            <option value="MBPK">MBPK / Pendidikan Khas</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tahap Murid</label>
+        <input type="text" id="tahap" placeholder="Contoh: Tahun 5, Tingkatan 3">
+    </div>
+    <div class="form-group">
+        <label>Objektif Kajian</label>
+        <textarea id="objektif" rows="2"></textarea>
+    </div>
+
+    <button onclick="prosesIKTE()">JANA DRAF KAJIAN</button>
+    <button onclick="downloadDraft()" style="background: var(--gold); color: var(--navy);">MUAT TURUN (.txt)</button>
+
+    <div id="output">Hasil draf akan dipaparkan di sini...</div>
+</div>
+
+<footer>
+    Platform ini mengumpul statistik penggunaan secara anonim bagi tujuan penambahbaikan sistem. Tiada maklumat peribadi dikumpulkan.
+</footer>
+
+<script>
+    /**
+     * ENJIN IKTE™ - Logik Pemilihan Verba & Mapping
+     */
+    const IKTE_CONFIG = {
+        verbs: {
+            "Akademik": "Meningkatkan Penguasaan",
+            "Kaunseling": "Meningkatkan Keyakinan Diri",
+            "Disiplin": "Mengurangkan Kes",
+            "HEM": "Meningkatkan Kehadiran",
+            "Kokurikulum": "Meningkatkan Penyertaan",
+            "NILAM": "Meningkatkan Minat Membaca",
+            "Kebersihan": "Membudayakan Amalan Kebersihan",
+            "MBPK": "Meningkatkan Kemahiran"
+        },
+        normalise: ["lemah", "kurang", "tidak", "gagal", "sukar", "rendah"]
+    };
+
+    function normaliseIssue(isu) {
+        let clean = isu.toLowerCase();
+        IKTE_CONFIG.normalise.forEach(word => { clean = clean.replace(word, "").trim(); });
+        return clean.charAt(0).toUpperCase() + clean.slice(1);
     }
 
-    return template;
-}
+    function generateResearchTitle(context, normalisedIsu, tahap) {
+        const verb = IKTE_CONFIG.verbs[context] || "Meningkatkan";
+        return `${verb} ${normalisedIsu} dalam kalangan Murid ${tahap}`;
+    }
+
+    function prosesIKTE() {
+        const rawIsu = document.getElementById('isu').value;
+        const context = document.getElementById('bidang').value;
+        const tahap = document.getElementById('tahap').value;
+        
+        const nIsu = normaliseIssue(rawIsu);
+        const title = generateResearchTitle(context, nIsu, tahap);
+
+        const report = `=== DRAF KAJIAN TINDAKAN (IKTE™ v1.0) ===\n\n` +
+                       `TAJUK: ${title}\n\n` +
+                       `FOKUS KAJIAN: Mengenalpasti kaedah berkesan untuk ${nIsu.toLowerCase()}.\n` +
+                       `KUMPULAN SASARAN: Murid ${tahap}.\n` +
+                       `METODOLOGI: Kajian tindakan model Kemmis & McTaggart.\n\n` +
+                       `--- Komponen Pelaksanaan ---\n` +
+                       `1. Refleksi PdP: Analisis masalah ${nIsu.toLowerCase()} dalam kelas.\n` +
+                       `2. Objektif Khusus (SMART): Mengukur peningkatan ${nIsu.toLowerCase()} dalam tempoh 4 minggu.\n` +
+                       `3. Instrumen: Pemerhatian, ujian pra/pasca, dan analisis dokumen.\n\n` +
+                       `CADANGAN PROMPT AI: "Bantu saya membina modul intervensi terperinci bagi tajuk: ${title}."`;
+
+        document.getElementById('output').innerText = report;
+    }
+
+    function downloadDraft() {
+        const text = document.getElementById('output').innerText;
+        const blob = new Blob([text], {type: 'text/plain'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'Draf_Kajian_Tindakan.txt';
+        a.click();
+    }
+</script>
+
+</body>
+</html>
