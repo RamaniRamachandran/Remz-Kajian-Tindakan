@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e Kajian Tindakan | RR Innovation</title>
+    <title>e Kajian Tindakan | EPKT™ Engine</title>
     <style>
         :root { --navy: #002147; --gold: #C5A059; --white: #ffffff; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
@@ -23,12 +23,12 @@
 
 <div class="container">
     <h1>e Kajian Tindakan</h1>
-    <p style="text-align:center; font-style: italic;">Platform Pintar Penjana Draf Kajian Tindakan - RR Innovation</p>
+    <p style="text-align:center; font-style: italic;">EPKT™: Enjin Pintar Kajian Tindakan - RR Innovation</p>
     <div class="header-line"></div>
 
     <div class="form-group">
         <label>Isu / Masalah Murid</label>
-        <input type="text" id="isu" placeholder="Contoh: Sifir, Ponteng, Keyakinan">
+        <input type="text" id="isu" placeholder="Contoh: Lemah sifir, Ponteng, Kurang keyakinan">
     </div>
     <div class="form-group">
         <label>Bidang Kajian</label>
@@ -39,7 +39,6 @@
             <option value="HEM">HEM</option>
             <option value="Kokurikulum">Kokurikulum</option>
             <option value="NILAM">NILAM</option>
-            <option value="Kebersihan">Kebersihan</option>
             <option value="MBPK">MBPK / Pendidikan Khas</option>
         </select>
     </div>
@@ -52,7 +51,7 @@
         <textarea id="objektif" rows="2"></textarea>
     </div>
 
-    <button onclick="prosesIKTE()">JANA DRAF KAJIAN</button>
+    <button onclick="prosesEPKT()">JANA DRAF KAJIAN</button>
     <button onclick="downloadDraft()" style="background: var(--gold); color: var(--navy);">MUAT TURUN (.txt)</button>
 
     <div id="output">Hasil draf akan dipaparkan di sini...</div>
@@ -63,52 +62,117 @@
 </footer>
 
 <script>
-    /**
-     * ENJIN IKTE™ - Logik Pemilihan Verba & Mapping
-     */
-    const IKTE_CONFIG = {
-        verbs: {
-            "Akademik": "Meningkatkan Penguasaan",
-            "Kaunseling": "Meningkatkan Keyakinan Diri",
-            "Disiplin": "Mengurangkan Kes",
-            "HEM": "Meningkatkan Kehadiran",
-            "Kokurikulum": "Meningkatkan Penyertaan",
-            "NILAM": "Meningkatkan Minat Membaca",
-            "Kebersihan": "Membudayakan Amalan Kebersihan",
-            "MBPK": "Meningkatkan Kemahiran"
+    const EPKT_ENGINE = {
+        goals: {
+            "sifir": "Penguasaan Sifir",
+            "huruf": "Pengecaman Huruf",
+            "ponteng": "Kehadiran Murid",
+            "buli": "Pengurangan Kes Buli",
+            "keyakinan": "Keyakinan Diri",
+            "membaca": "Minat Membaca",
+            "kotor": "Amalan Kebersihan",
+            "fokus": "Tumpuan Semasa PdP",
+            "lewat": "Kehadiran Murid"
         },
-        normalise: ["lemah", "kurang", "tidak", "gagal", "sukar", "rendah"]
+
+        domainConfig: {
+            "Akademik": {
+                template: "Meningkatkan Penguasaan {goal} melalui Teknik Gamifikasi dalam Kalangan Murid {tahap}",
+                interventions: "Penggunaan bahan bantu belajar interaktif dan digital",
+                methods: "Kajian Tindakan Model Kemmis & McTaggart",
+                instruments: "Pra-Ujian, Pasca-Ujian, dan Lembaran Kerja",
+                analysis: "Analisis deskriptif (perbandingan markah ujian)",
+                innovation: "Aplikasi mudah alih interaktif"
+            },
+            "Kaunseling": {
+                template: "Meningkatkan Keyakinan Diri melalui Modul Bimbingan Berfokus dalam Kalangan Murid {tahap}",
+                interventions: "Sesi kaunseling individu menggunakan teknik CBT",
+                methods: "Kajian Tindakan Model Elliot",
+                instruments: "Pemerhatian, Temu bual, dan Skala Likert",
+                analysis: "Analisis tematik (kualitatif)",
+                innovation: "Sesi modul bimbingan video kreatif"
+            },
+            "Disiplin": {
+                template: "Mengurangkan Kes {goal} melalui Program Mentor-Mentee dalam Kalangan Murid {tahap}",
+                interventions: "Sistem pemantauan disiplin berasaskan ganjaran positif",
+                methods: "Kajian Tindakan Model Lewin",
+                instruments: "Rekod disiplin harian dan senarai semak",
+                analysis: "Analisis statistik kekerapan salah laku",
+                innovation: "Sistem merit-demerit digital"
+            },
+            "HEM": {
+                template: "Meningkatkan Kehadiran Murid melalui Program Intervensi Ziarah Cakna dalam Kalangan Murid {tahap}",
+                interventions: "Program 'Guru Penyayang' dan ziarah ke rumah",
+                methods: "Kajian Tindakan Model Kemmis & McTaggart",
+                instruments: "Buku rekod kehadiran dan borang temu bual",
+                analysis: "Analisis data kehadiran bulanan",
+                innovation: "Sistem amaran awal kehadiran"
+            },
+            "Kokurikulum": {
+                template: "Meningkatkan Penyertaan Murid dalam {goal} melalui Sistem House Point dalam Kalangan Murid {tahap}",
+                interventions: "Pemberian lencana digital dan ganjaran merit",
+                methods: "Kajian Tindakan Model Kemmis & McTaggart",
+                instruments: "Borang senarai semak penyertaan",
+                analysis: "Analisis data kuantitatif penyertaan",
+                innovation: "Sistem papan pendahulu (Leaderboard) digital"
+            },
+            "NILAM": {
+                template: "Meningkatkan Minat Membaca melalui Program Literasi Digital dalam Kalangan Murid {tahap}",
+                interventions: "Bengkel pembacaan digital dan ganjaran membaca",
+                methods: "Kajian Tindakan Model Kemmis & McTaggart",
+                instruments: "Rekod pinjaman buku dan buku NILAM",
+                analysis: "Analisis data rekod bacaan murid",
+                innovation: "Sudut literasi digital interaktif"
+            },
+            "MBPK": {
+                template: "Meningkatkan Kemahiran {goal} melalui Terapi Sensori dalam Kalangan Murid {tahap}",
+                interventions: "Aktiviti motor halus dan bahan bantu belajar khusus",
+                methods: "Kajian Tindakan Model Kemmis & McTaggart",
+                instruments: "Senarai semak perkembangan kemahiran",
+                analysis: "Analisis pemerhatian berstruktur",
+                innovation: "Alat bantu belajar (ABM) mesra sensori"
+            }
+        }
     };
 
-    function normaliseIssue(isu) {
-        let clean = isu.toLowerCase();
-        IKTE_CONFIG.normalise.forEach(word => { clean = clean.replace(word, "").trim(); });
-        return clean.charAt(0).toUpperCase() + clean.slice(1);
-    }
-
-    function generateResearchTitle(context, normalisedIsu, tahap) {
-        const verb = IKTE_CONFIG.verbs[context] || "Meningkatkan";
-        return `${verb} ${normalisedIsu} dalam kalangan Murid ${tahap}`;
-    }
-
-    function prosesIKTE() {
-        const rawIsu = document.getElementById('isu').value;
-        const context = document.getElementById('bidang').value;
+    function prosesEPKT() {
+        const rawIsu = document.getElementById('isu').value.toLowerCase();
+        const bidang = document.getElementById('bidang').value;
         const tahap = document.getElementById('tahap').value;
+        const obj = document.getElementById('objektif').value;
         
-        const nIsu = normaliseIssue(rawIsu);
-        const title = generateResearchTitle(context, nIsu, tahap);
+        let goal = rawIsu;
+        for (let key in EPKT_ENGINE.goals) {
+            if (rawIsu.includes(key)) {
+                goal = EPKT_ENGINE.goals[key];
+                break;
+            }
+        }
 
-        const report = `=== DRAF KAJIAN TINDAKAN (IKTE™ v1.0) ===\n\n` +
-                       `TAJUK: ${title}\n\n` +
-                       `FOKUS KAJIAN: Mengenalpasti kaedah berkesan untuk ${nIsu.toLowerCase()}.\n` +
-                       `KUMPULAN SASARAN: Murid ${tahap}.\n` +
-                       `METODOLOGI: Kajian tindakan model Kemmis & McTaggart.\n\n` +
-                       `--- Komponen Pelaksanaan ---\n` +
-                       `1. Refleksi PdP: Analisis masalah ${nIsu.toLowerCase()} dalam kelas.\n` +
-                       `2. Objektif Khusus (SMART): Mengukur peningkatan ${nIsu.toLowerCase()} dalam tempoh 4 minggu.\n` +
-                       `3. Instrumen: Pemerhatian, ujian pra/pasca, dan analisis dokumen.\n\n` +
-                       `CADANGAN PROMPT AI: "Bantu saya membina modul intervensi terperinci bagi tajuk: ${title}."`;
+        const config = EPKT_ENGINE.domainConfig[bidang];
+        const tajuk = config.template.replace("{goal}", goal).replace("{tahap}", tahap);
+        
+        const report = `=== DRAF KAJIAN TINDAKAN (EPKT™ v1.0) ===
+
+1. TAJUK KAJIAN: ${tajuk}
+2. REFLEKSI PdP: Murid menghadapi kekangan dalam penguasaan kemahiran asas yang memerlukan intervensi segera.
+3. FOKUS KAJIAN: ${goal}.
+4. PERNYATAAN MASALAH: Isu ini menghalang murid mencapai potensi akademik yang maksimum dan perlu ditangani secara sistematik.
+5. OBJEKTIF UMUM: ${obj || tajuk}.
+6. OBJEKTIF KHUSUS (SMART): Meningkatkan pencapaian ${goal} sebanyak 50% dalam tempoh 4 minggu.
+7. PERSOALAN KAJIAN: Adakah intervensi ini dapat meningkatkan ${goal} murid ${tahap}?
+8. KUMPULAN SASARAN: Murid ${tahap}.
+9. INTERVENSI: ${config.interventions}.
+10. METODOLOGI: ${config.methods}.
+11. INSTRUMEN: ${config.instruments}.
+12. ANALISIS DATA: ${config.analysis}.
+13. JADUAL PELAKSANAAN: Fasa Perancangan, Pelaksanaan, Pemerhatian, Refleksi (4 Minggu).
+14. ANGGARAN KOS: RM 50.00 - RM 150.00 (Bahan bantu mengajar).
+15. CADANGAN INOVASI: ${config.innovation}.
+16. REFLEKSI PENYELIDIK: Kajian ini dijangka mampu memberi impak positif terhadap kemenjadian murid.
+
+--- CADANGAN PROMPT AI ---
+"Bantu saya membina modul intervensi terperinci dan rancangan pengajaran harian (RPH) bagi tajuk: ${tajuk}."`;
 
         document.getElementById('output').innerText = report;
     }
@@ -118,7 +182,7 @@
         const blob = new Blob([text], {type: 'text/plain'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'Draf_Kajian_Tindakan.txt';
+        a.download = 'Draf_Kajian_Tindakan_EPKT.txt';
         a.click();
     }
 </script>
