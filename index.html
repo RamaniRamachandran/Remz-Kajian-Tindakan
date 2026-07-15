@@ -5,27 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e Kajian Tindakan | EPKT™ Engine</title>
     <style>
-        :root { --navy: #002147; --gold: #C5A059; --white: #ffffff; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1, h2 { color: var(--navy); text-align: center; }
-        .header-line { border-bottom: 2px solid var(--gold); margin-bottom: 20px; }
+        :root { --navy: #002147; --gold: #C5A059; --white: #ffffff; --gradient: linear-gradient(135deg, #002147 0%, #004a99 100%); }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 0; }
+        
+        /* Premium Hero Section */
+        .hero { 
+            background: var(--gradient); 
+            padding: 60px 20px; 
+            text-align: center; 
+            color: var(--white); 
+            position: relative; 
+            overflow: hidden;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .hero::before { content: ''; position: absolute; width: 400px; height: 400px; border: 2px solid rgba(197, 160, 89, 0.1); border-radius: 50%; top: -100px; left: -100px; }
+        .hero::after { content: ''; position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(197, 160, 89, 0.05), transparent); right: -50px; bottom: -50px; }
+
+        /* Logo Styling */
+        .logo-container { animation: fadeIn 1.2s ease-out; margin-bottom: 20px; }
+        .logo-badge { 
+            width: 120px; height: 120px; border-radius: 50%; 
+            border: 6px solid var(--navy); background: #00152e;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3), inset 0 0 10px rgba(197,160,89,0.3);
+        }
+        .rr-text { 
+            font-size: 40px; font-weight: bold; background: linear-gradient(to bottom, #f5d76e, #c5a059);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: flex;
+        }
+        .rr-text span:last-child { transform: scaleX(-1); }
+        .logo-label { margin-top: 10px; font-weight: bold; letter-spacing: 2px; color: var(--gold); }
+        .slogan { font-size: 0.7em; letter-spacing: 3px; opacity: 0.8; }
+
+        /* Typography & Main Content */
+        .hero-content { animation: slideUp 1s ease-out; z-index: 1; }
+        h1 { margin: 10px 0; font-size: 2.5em; color: var(--gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .badges { margin: 15px 0; }
+        .badge { background: rgba(197, 160, 89, 0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8em; margin: 0 5px; border: 1px solid var(--gold); }
+        .container { max-width: 900px; margin: 40px auto; background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; }
         input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { background: var(--navy); color: var(--gold); border: none; padding: 12px 20px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
-        button:hover { background: #003366; }
+        button { background: var(--navy); color: var(--gold); border: none; padding: 12px 20px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; transition: all 0.3s ease; }
+        button:hover { background: #003366; transform: translateY(-2px); }
         #output { margin-top: 30px; padding: 20px; background: #f9f9f9; border-left: 5px solid var(--gold); white-space: pre-wrap; font-size: 0.95em; }
         footer { text-align: center; font-size: 0.8em; margin-top: 30px; color: #666; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>e Kajian Tindakan</h1>
-    <p style="text-align:center; font-style: italic;">EPKT™: Enjin Pintar Kajian Tindakan - RR Innovation</p>
-    <div class="header-line"></div>
+<section class="hero">
+    <div class="logo-container">
+        <div class="logo-badge">
+            <div class="rr-text"><span>R</span><span>R</span></div>
+        </div>
+        <div class="logo-label">RR Innovation</div>
+        <div class="slogan">FORWARD TOGETHER</div>
+    </div>
+    <div class="hero-content">
+        <h1>e KAJIAN TINDAKAN</h1>
+        <p>Platform Pintar Penjana Draf Kajian Tindakan untuk Warga Pendidik Malaysia</p>
+        <div class="badges">
+            <span class="badge">Versi 1.0</span>
+            <span class="badge">Powered by EPKT™ Engine</span>
+        </div>
+    </div>
+</section>
 
+<div class="container">
     <div class="form-group">
         <label>Isu / Masalah Murid</label>
         <input type="text" id="isu" placeholder="Contoh: Lemah sifir, Ponteng, Kurang keyakinan">
@@ -63,75 +114,15 @@
 
 <script>
     const EPKT_ENGINE = {
-        goals: {
-            "sifir": "Penguasaan Sifir",
-            "huruf": "Pengecaman Huruf",
-            "ponteng": "Kehadiran Murid",
-            "buli": "Pengurangan Kes Buli",
-            "keyakinan": "Keyakinan Diri",
-            "membaca": "Minat Membaca",
-            "kotor": "Amalan Kebersihan",
-            "fokus": "Tumpuan Semasa PdP",
-            "lewat": "Kehadiran Murid"
-        },
-
+        goals: { "sifir": "Penguasaan Sifir", "huruf": "Pengecaman Huruf", "ponteng": "Kehadiran Murid", "buli": "Pengurangan Kes Buli", "keyakinan": "Keyakinan Diri", "membaca": "Minat Membaca", "kotor": "Amalan Kebersihan", "fokus": "Tumpuan Semasa PdP", "lewat": "Kehadiran Murid" },
         domainConfig: {
-            "Akademik": {
-                template: "Meningkatkan Penguasaan {goal} melalui Teknik Gamifikasi dalam Kalangan Murid {tahap}",
-                interventions: "Penggunaan bahan bantu belajar interaktif dan digital",
-                methods: "Kajian Tindakan Model Kemmis & McTaggart",
-                instruments: "Pra-Ujian, Pasca-Ujian, dan Lembaran Kerja",
-                analysis: "Analisis deskriptif (perbandingan markah ujian)",
-                innovation: "Aplikasi mudah alih interaktif"
-            },
-            "Kaunseling": {
-                template: "Meningkatkan Keyakinan Diri melalui Modul Bimbingan Berfokus dalam Kalangan Murid {tahap}",
-                interventions: "Sesi kaunseling individu menggunakan teknik CBT",
-                methods: "Kajian Tindakan Model Elliot",
-                instruments: "Pemerhatian, Temu bual, dan Skala Likert",
-                analysis: "Analisis tematik (kualitatif)",
-                innovation: "Sesi modul bimbingan video kreatif"
-            },
-            "Disiplin": {
-                template: "Mengurangkan Kes {goal} melalui Program Mentor-Mentee dalam Kalangan Murid {tahap}",
-                interventions: "Sistem pemantauan disiplin berasaskan ganjaran positif",
-                methods: "Kajian Tindakan Model Lewin",
-                instruments: "Rekod disiplin harian dan senarai semak",
-                analysis: "Analisis statistik kekerapan salah laku",
-                innovation: "Sistem merit-demerit digital"
-            },
-            "HEM": {
-                template: "Meningkatkan Kehadiran Murid melalui Program Intervensi Ziarah Cakna dalam Kalangan Murid {tahap}",
-                interventions: "Program 'Guru Penyayang' dan ziarah ke rumah",
-                methods: "Kajian Tindakan Model Kemmis & McTaggart",
-                instruments: "Buku rekod kehadiran dan borang temu bual",
-                analysis: "Analisis data kehadiran bulanan",
-                innovation: "Sistem amaran awal kehadiran"
-            },
-            "Kokurikulum": {
-                template: "Meningkatkan Penyertaan Murid dalam {goal} melalui Sistem House Point dalam Kalangan Murid {tahap}",
-                interventions: "Pemberian lencana digital dan ganjaran merit",
-                methods: "Kajian Tindakan Model Kemmis & McTaggart",
-                instruments: "Borang senarai semak penyertaan",
-                analysis: "Analisis data kuantitatif penyertaan",
-                innovation: "Sistem papan pendahulu (Leaderboard) digital"
-            },
-            "NILAM": {
-                template: "Meningkatkan Minat Membaca melalui Program Literasi Digital dalam Kalangan Murid {tahap}",
-                interventions: "Bengkel pembacaan digital dan ganjaran membaca",
-                methods: "Kajian Tindakan Model Kemmis & McTaggart",
-                instruments: "Rekod pinjaman buku dan buku NILAM",
-                analysis: "Analisis data rekod bacaan murid",
-                innovation: "Sudut literasi digital interaktif"
-            },
-            "MBPK": {
-                template: "Meningkatkan Kemahiran {goal} melalui Terapi Sensori dalam Kalangan Murid {tahap}",
-                interventions: "Aktiviti motor halus dan bahan bantu belajar khusus",
-                methods: "Kajian Tindakan Model Kemmis & McTaggart",
-                instruments: "Senarai semak perkembangan kemahiran",
-                analysis: "Analisis pemerhatian berstruktur",
-                innovation: "Alat bantu belajar (ABM) mesra sensori"
-            }
+            "Akademik": { template: "Meningkatkan Penguasaan {goal} melalui Teknik Gamifikasi dalam Kalangan Murid {tahap}", interventions: "Penggunaan bahan bantu belajar interaktif dan digital", methods: "Kajian Tindakan Model Kemmis & McTaggart", instruments: "Pra-Ujian, Pasca-Ujian, dan Lembaran Kerja", analysis: "Analisis deskriptif (perbandingan markah ujian)", innovation: "Aplikasi mudah alih interaktif" },
+            "Kaunseling": { template: "Meningkatkan Keyakinan Diri melalui Modul Bimbingan Berfokus dalam Kalangan Murid {tahap}", interventions: "Sesi kaunseling individu menggunakan teknik CBT", methods: "Kajian Tindakan Model Elliot", instruments: "Pemerhatian, Temu bual, dan Skala Likert", analysis: "Analisis tematik (kualitatif)", innovation: "Sesi modul bimbingan video kreatif" },
+            "Disiplin": { template: "Mengurangkan Kes {goal} melalui Program Mentor-Mentee dalam Kalangan Murid {tahap}", interventions: "Sistem pemantauan disiplin berasaskan ganjaran positif", methods: "Kajian Tindakan Model Lewin", instruments: "Rekod disiplin harian dan senarai semak", analysis: "Analisis statistik kekerapan salah laku", innovation: "Sistem merit-demerit digital" },
+            "HEM": { template: "Meningkatkan Kehadiran Murid melalui Program Intervensi Ziarah Cakna dalam Kalangan Murid {tahap}", interventions: "Program 'Guru Penyayang' dan ziarah ke rumah", methods: "Kajian Tindakan Model Kemmis & McTaggart", instruments: "Buku rekod kehadiran dan borang temu bual", analysis: "Analisis data kehadiran bulanan", innovation: "Sistem amaran awal kehadiran" },
+            "Kokurikulum": { template: "Meningkatkan Penyertaan Murid dalam {goal} melalui Sistem House Point dalam Kalangan Murid {tahap}", interventions: "Pemberian lencana digital dan ganjaran merit", methods: "Kajian Tindakan Model Kemmis & McTaggart", instruments: "Borang senarai semak penyertaan", analysis: "Analisis data kuantitatif penyertaan", innovation: "Sistem papan pendahulu (Leaderboard) digital" },
+            "NILAM": { template: "Meningkatkan Minat Membaca melalui Program Literasi Digital dalam Kalangan Murid {tahap}", interventions: "Bengkel pembacaan digital dan ganjaran membaca", methods: "Kajian Tindakan Model Kemmis & McTaggart", instruments: "Rekod pinjaman buku dan buku NILAM", analysis: "Analisis data rekod bacaan murid", innovation: "Sudut literasi digital interaktif" },
+            "MBPK": { template: "Meningkatkan Kemahiran {goal} melalui Terapi Sensori dalam Kalangan Murid {tahap}", interventions: "Aktiviti motor halus dan bahan bantu belajar khusus", methods: "Kajian Tindakan Model Kemmis & McTaggart", instruments: "Senarai semak perkembangan kemahiran", analysis: "Analisis pemerhatian berstruktur", innovation: "Alat bantu belajar (ABM) mesra sensori" }
         }
     };
 
@@ -140,40 +131,11 @@
         const bidang = document.getElementById('bidang').value;
         const tahap = document.getElementById('tahap').value;
         const obj = document.getElementById('objektif').value;
-        
         let goal = rawIsu;
-        for (let key in EPKT_ENGINE.goals) {
-            if (rawIsu.includes(key)) {
-                goal = EPKT_ENGINE.goals[key];
-                break;
-            }
-        }
-
+        for (let key in EPKT_ENGINE.goals) { if (rawIsu.includes(key)) { goal = EPKT_ENGINE.goals[key]; break; } }
         const config = EPKT_ENGINE.domainConfig[bidang];
         const tajuk = config.template.replace("{goal}", goal).replace("{tahap}", tahap);
-        
-        const report = `=== DRAF KAJIAN TINDAKAN (EPKT™ v1.0) ===
-
-1. TAJUK KAJIAN: ${tajuk}
-2. REFLEKSI PdP: Murid menghadapi kekangan dalam penguasaan kemahiran asas yang memerlukan intervensi segera.
-3. FOKUS KAJIAN: ${goal}.
-4. PERNYATAAN MASALAH: Isu ini menghalang murid mencapai potensi akademik yang maksimum dan perlu ditangani secara sistematik.
-5. OBJEKTIF UMUM: ${obj || tajuk}.
-6. OBJEKTIF KHUSUS (SMART): Meningkatkan pencapaian ${goal} sebanyak 50% dalam tempoh 4 minggu.
-7. PERSOALAN KAJIAN: Adakah intervensi ini dapat meningkatkan ${goal} murid ${tahap}?
-8. KUMPULAN SASARAN: Murid ${tahap}.
-9. INTERVENSI: ${config.interventions}.
-10. METODOLOGI: ${config.methods}.
-11. INSTRUMEN: ${config.instruments}.
-12. ANALISIS DATA: ${config.analysis}.
-13. JADUAL PELAKSANAAN: Fasa Perancangan, Pelaksanaan, Pemerhatian, Refleksi (4 Minggu).
-14. ANGGARAN KOS: RM 50.00 - RM 150.00 (Bahan bantu mengajar).
-15. CADANGAN INOVASI: ${config.innovation}.
-16. REFLEKSI PENYELIDIK: Kajian ini dijangka mampu memberi impak positif terhadap kemenjadian murid.
-
---- CADANGAN PROMPT AI ---
-"Bantu saya membina modul intervensi terperinci dan rancangan pengajaran harian (RPH) bagi tajuk: ${tajuk}."`;
-
+        const report = `=== DRAF KAJIAN TINDAKAN (EPKT™ v1.0) ===\n\n1. TAJUK KAJIAN: ${tajuk}\n2. REFLEKSI PdP: Murid menghadapi kekangan dalam penguasaan kemahiran asas yang memerlukan intervensi segera.\n3. FOKUS KAJIAN: ${goal}.\n4. PERNYATAAN MASALAH: Isu ini menghalang murid mencapai potensi akademik yang maksimum dan perlu ditangani secara sistematik.\n5. OBJEKTIF UMUM: ${obj || tajuk}.\n6. OBJEKTIF KHUSUS (SMART): Meningkatkan pencapaian ${goal} sebanyak 50% dalam tempoh 4 minggu.\n7. PERSOALAN KAJIAN: Adakah intervensi ini dapat meningkatkan ${goal} murid ${tahap}?\n8. KUMPULAN SASARAN: Murid ${tahap}.\n9. INTERVENSI: ${config.interventions}.\n10. METODOLOGI: ${config.methods}.\n11. INSTRUMEN: ${config.instruments}.\n12. ANALISIS DATA: ${config.analysis}.\n13. JADUAL PELAKSANAAN: Fasa Perancangan, Pelaksanaan, Pemerhatian, Refleksi (4 Minggu).\n14. ANGGARAN KOS: RM 50.00 - RM 150.00 (Bahan bantu mengajar).\n15. CADANGAN INOVASI: ${config.innovation}.\n16. REFLEKSI PENYELIDIK: Kajian ini dijangka mampu memberi impak positif terhadap kemenjadian murid.\n\n--- CADANGAN PROMPT AI ---\n"Bantu saya membina modul intervensi terperinci dan rancangan pengajaran harian (RPH) bagi tajuk: ${tajuk}."`;
         document.getElementById('output').innerText = report;
     }
 
